@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Playground - Components</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: url('https://images.unsplash.com/photo-1620121692029-d088224ddc74') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        nav {
+            background: #95a5a6; /* Grey color */
+			padding: 10px;
+			border-radius: 5px;
+			margin-bottom: 20px;
+        }
+        nav > a {
+            color: white;
+			text-decoration: none;
+			margin: 0 15px;
+			font-weight: bold;
+        }
+        nav > a:hover { color: #b7d7e4; }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+		nav > a:active { 
+    color: white;
+}
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: #ecf0f1;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 5px;
+        }
+        .dropdown-content a {
+            color: #2c3e50;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-weight: normal;
+        }
+        .dropdown-content a:hover { 
+            background: #3498db; 
+            color: white; 
+        }
+        .dropdown:hover .dropdown-content { 
+            display: block; 
+        }
+        .component-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+            display: none;
+        }
+        .success { background: #27ae60; color: white; }
+        .failure { background: #c0392b; color: white; }
+        input, button, select, textarea {
+            margin: 5px 0;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: white;
+        }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background: #2980b9; }
+        progress { width: 100%; height: 20px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #3498db; color: white; }
+        .scrollable { max-height: 100px; overflow-y: auto; border: 1px solid #ddd; }
+        iframe { width: 100%; height: 200px; border: 1px solid #ddd; }
+        .hidden { display: none; }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        .hover-target {
+            background: #e8f4f8;
+            padding: 5px 10px;
+            border: 2px solid #3498db;
+            border-radius: 4px;
+            display: inline-block;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .hover-target:hover {
+            background: #d1e8f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Testing Playground - Components</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <a href="#">Components</a>
+                <div class="dropdown-content">
+                    <a href="#text-input">Text Input</a>
+                    <a href="#buttons">Buttons</a>
+                    <a href="#dynamic-attributes">Dynamic Attributes</a>
+                    <a href="#progress-bar">Progress Bar</a>
+                    <a href="#verify-text">Verify Text</a>
+                    <a href="#dynamic-table">Dynamic Table</a>
+                    <a href="#table">Table</a>
+                    <a href="#dropdown-selection">Dropdown Selection</a>
+                    <a href="#iframe">Iframe</a>
+                    <a href="#mouse-over">Mouse Over</a>
+                    <a href="#alerts">Alerts</a>
+                    <a href="#file-upload">File Upload</a>
+                    <a href="#disabled-input">Disabled Input</a>
+                    <a href="#load-delay">Load Delay</a>
+                    <a href="#ajax-content">AJAX Content</a>
+                    <a href="#popup">Popup</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Text Input -->
+        <div class="component-section" id="text-input">
+            <h2>Text Input Test</h2>
+            <p><strong>Description:</strong> Tests text input with validation. Enter text (min 3 chars) to see success/failure.</p>
+            <input type="text" id="textInput" name="textInput" placeholder="Enter at least 3 characters" aria-label="Text input field">
+            <button id="submitText" onclick="testText()">Submit</button>
+            <div id="textSuccess" class="message success">Success! Text received.</div>
+            <div id="textFailure" class="message failure">Error: Text must be at least 3 characters!</div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="component-section" id="buttons">
+            <h2>Buttons Test</h2>
+            <p><strong>Description:</strong> Tests button clicks with toggling states.</p>
+            <button id="successBtn" class="toggle-btn" onclick="showSuccess()" aria-label="Success button">Success</button>
+            <button id="failureBtn" class="toggle-btn" onclick="showFailure()" aria-label="Failure button">Failure</button>
+            <div id="buttonSuccess" class="message success">Button clicked successfully!</div>
+            <div id="buttonFailure" class="message failure">Button click failed!</div>
+        </div>
+
+        <!-- Dynamic Attributes -->
+        <div class="component-section" id="dynamic-attributes">
+            <h2>Dynamic Attributes Test</h2>
+            <p><strong>Description:</strong> Changes element ID and class dynamically.</p>
+            <div id="dynamicElement" class="dynamic-item" aria-live="polite">Hover me!</div>
+            <button id="changeAttrBtn" onclick="changeAttributes()">Change Attributes</button>
+            <div id="attrSuccess" class="message success">Attributes changed!</div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="component-section" id="progress-bar">
+            <h2>Progress Bar Test</h2>
+            <p><strong>Description:</strong> Increments progress bar value.</p>
+            <progress id="progressBar" value="0" max="100" aria-label="Progress bar"></progress>
+            <button id="updateProgressBtn" onclick="updateProgress()">Update Progress</button>
+        </div>
+
+        <!-- Verify Text -->
+        <div class="component-section" id="verify-text">
+            <h2>Verify Text Test</h2>
+            <p><strong>Description:</strong> Verifies if text matches 'test'.</p>
+            <input type="text" id="verifyInput" name="verifyInput" placeholder="Type 'test'" aria-label="Verification text input">
+            <button id="verifyBtn" onclick="verifyText()">Verify</button>
+            <div id="verifySuccess" class="message success">Text verified!</div>
+            <div id="verifyFailure" class="message failure">Text doesn't match!</div>
+        </div>
+
+        <!-- Dynamic Table -->
+        <div class="component-section" id="dynamic-table">
+            <h2>Dynamic Table Test</h2>
+            <p><strong>Description:</strong> Adds rows dynamically with unique IDs.</p>
+            <div class="scrollable">
+                <table id="dynamicTable" aria-label="Dynamic table">
+                    <thead>
+                        <tr><th>ID</th><th>Name</th></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+            <button id="addRowBtn" onclick="addRow()">Add Row</button>
+        </div>
+
+        <!-- Table -->
+        <div class="component-section" id="table">
+            <h2>Table Test</h2>
+            <p><strong>Description:</strong> Displays a static table with sample user data.</p>
+            <table id="sampleTable" aria-label="Sample user data table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>john.doe@example.com</td>
+                        <td>Developer</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>jane.smith@example.com</td>
+                        <td>Tester</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Mike Johnson</td>
+                        <td>mike.j@example.com</td>
+                        <td>Manager</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Dropdown Selection -->
+        <div class="component-section" id="dropdown-selection">
+            <h2>Dropdown Selection Test</h2>
+            <p><strong>Description:</strong> Tests selection from a dropdown menu and displays the selected option.</p>
+            <select id="dropdownSelect" name="dropdownSelect" aria-label="Select an option">
+                <option value="">-- Select an Option --</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+            </select>
+            <button id="submitDropdown" onclick="submitDropdown()">Submit</button>
+            <div id="dropdownSuccess" class="message success"></div>
+        </div>
+
+        <!-- Iframe -->
+        <div class="component-section" id="iframe">
+            <h2>Iframe Test</h2>
+            <p><strong>Description:</strong> Loads content into an iframe.</p>
+            <iframe id="testIframe" name="testIframe" src="about:blank" aria-label="Test iframe"></iframe>
+            <button id="loadIframeBtn" onclick="loadIframe()">Load Content</button>
+        </div>
+
+        <!-- Mouse Over -->
+        <div class="component-section" id="mouse-over">
+            <h2>Mouse Over Test</h2>
+            <p><strong>Description:</strong> Shows message on hover.</p>
+            <div id="hoverElement" class="hover-target" onmouseover="showHover()" onmouseout="hideHover()" aria-label="Hover element">Hover here</div>
+            <div id="hoverMessage" class="message success">Hovered!</div>
+        </div>
+
+        <!-- Alerts -->
+        <div class="component-section" id="alerts">
+            <h2>Alerts Test</h2>
+            <p><strong>Description:</strong> Triggers a browser alert.</p>
+            <button id="alertBtn" onclick="showAlert()">Show Alert</button>
+        </div>
+
+        <!-- File Upload -->
+        <div class="component-section" id="file-upload">
+            <h2>File Upload Test</h2>
+            <p><strong>Description:</strong> Tests file selection.</p>
+            <input type="file" id="fileInput" name="fileInput" aria-label="File upload input">
+            <button id="uploadBtn" onclick="checkFile()">Upload</button>
+            <div id="fileSuccess" class="message success">File selected!</div>
+        </div>
+
+        <!-- Disabled Input -->
+        <div class="component-section" id="disabled-input">
+            <h2>Disabled Input Test</h2>
+            <p><strong>Description:</strong> Enables input after delay.</p>
+            <input type="text" id="disabledInput" name="disabledInput" disabled placeholder="Wait for enable..." aria-label="Disabled input">
+            <button id="enableInputBtn" onclick="enableInput()">Enable Input</button>
+        </div>
+
+        <!-- Load Delay -->
+        <div class="component-section" id="load-delay">
+            <h2>Load Delay Test</h2>
+            <p><strong>Description:</strong> Simulates delayed content load.</p>
+            <button id="loadDelayBtn" onclick="loadWithDelay()">Load with Delay</button>
+            <div id="loadMessage" class="message success">Content loaded after delay!</div>
+        </div>
+
+        <!-- AJAX Content -->
+        <div class="component-section" id="ajax-content">
+            <h2>AJAX Content Test</h2>
+            <p><strong>Description:</strong> Simulates AJAX loading with delay.</p>
+            <button id="loadAjaxBtn" onclick="loadAjaxContent()">Load AJAX Content</button>
+            <div id="ajaxContent" aria-live="polite">Content will load here...</div>
+        </div>
+
+        <!-- Popup -->
+        <div class="component-section" id="popup">
+            <h2>Popup Test</h2>
+            <p><strong>Description:</strong> Shows a popup after delay.</p>
+            <button id="showPopupBtn" onclick="showPopup()">Show Popup</button>
+            <div id="popup" class="popup hidden">
+                <p>This is a popup!</p>
+                <button id="closePopupBtn" onclick="hidePopup()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let rowCount = 0;
+        let progressValue = 0;
+
+        function testText() {
+            const input = document.getElementById('textInput').value;
+            showMessage(input.length >= 3, 'textSuccess', 'textFailure');
+        }
+
+        function showSuccess() { 
+            const btn = document.getElementById('successBtn');
+            btn.classList.toggle('active');
+            showMessage(true, 'buttonSuccess'); 
+        }
+        function showFailure() { 
+            const btn = document.getElementById('failureBtn');
+            btn.classList.toggle('active');
+            showMessage(true, 'buttonFailure'); 
+        }
+
+        function changeAttributes() {
+            const el = document.getElementById('dynamicElement');
+            el.id = `dynamic_${Date.now()}`;
+            el.className = 'changed';
+            el.style.background = '#3498db';
+            el.style.color = 'white';
+            el.style.padding = '10px';
+            showMessage(true, 'attrSuccess');
+        }
+
+        function updateProgress() {
+            progressValue = (progressValue + 25) % 101;
+            document.getElementById('progressBar').value = progressValue;
+        }
+
+        function verifyText() {
+            const input = document.getElementById('verifyInput').value;
+            showMessage(input === 'test', 'verifySuccess', 'verifyFailure');
+        }
+
+        function addRow() {
+            const tbody = document.getElementById('tableBody');
+            const row = tbody.insertRow();
+            row.id = `row_${++rowCount}`;
+            row.insertCell().textContent = rowCount;
+            row.insertCell().textContent = `Item ${rowCount}`;
+        }
+
+        function loadIframe() {
+            const iframe = document.getElementById('testIframe');
+            iframe.srcdoc = '<h2>Test Content</h2><p>This is loaded in an iframe!</p>';
+        }
+
+        function showHover() { showMessage(true, 'hoverMessage'); }
+        function hideHover() { document.getElementById('hoverMessage').style.display = 'none'; }
+
+        function showAlert() { alert('This is a test alert!'); }
+
+        function checkFile() {
+            const file = document.getElementById('fileInput').files[0];
+            showMessage(!!file, 'fileSuccess');
+        }
+
+        function enableInput() {
+            setTimeout(() => {
+                const input = document.getElementById('disabledInput');
+                input.disabled = false;
+                input.setAttribute('aria-disabled', 'false');
+            }, 2000);
+        }
+
+        function loadWithDelay() {
+            setTimeout(() => showMessage(true, 'loadMessage'), 1500);
+        }
+
+        function loadAjaxContent() {
+            const content = document.getElementById('ajaxContent');
+            content.textContent = 'Loading...';
+            setTimeout(() => {
+                content.textContent = 'AJAX content loaded successfully!';
+            }, 2000);
+        }
+
+        function showPopup() {
+            setTimeout(() => {
+                document.getElementById('popup').classList.remove('hidden');
+            }, 1000);
+        }
+
+        function hidePopup() {
+            document.getElementById('popup').classList.add('hidden');
+        }
+
+        function submitDropdown() {
+            const select = document.getElementById('dropdownSelect');
+            const selectedValue = select.value;
+            const successMessage = document.getElementById('dropdownSuccess');
+            if (selectedValue) {
+                successMessage.textContent = `Selected: ${select.options[select.selectedIndex].text}`;
+                showMessage(true, 'dropdownSuccess');
+            }
+        }
+
+        function showMessage(condition, successId, failureId) {
+            const success = document.getElementById(successId);
+            const failure = failureId ? document.getElementById(failureId) : null;
+            if (success) success.style.display = 'none';
+            if (failure) failure.style.display = 'none';
+            if (condition) {
+                success.style.display = 'block';
+                setTimeout(() => success.style.display = 'none', 2000);
+            } else if (failure) {
+                failure.style.display = 'block';
+                setTimeout(() => failure.style.display = 'none', 2000);
+            }
+        }
+    </script>
+</body>
+</html>
