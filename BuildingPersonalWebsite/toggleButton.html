@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider Toggle Example</title>
+    <style>
+        /* Style the slider container */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* Hide the default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* Style the slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        /* Style the slider before (circle inside) */
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            border-radius: 50%;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+        }
+
+        /* Change slider color when checked */
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        /* Move the circle to the right when checked */
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Text styles */
+        .status-text {
+            margin-left: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <label class="switch">
+        <input type="checkbox" id="toggleCheckbox" onchange="toggleStatus()">
+        <span class="slider"></span>
+    </label>
+
+    <span id="status" class="status-text">Not Available</span>
+
+    <script>
+        function toggleStatus() {
+            const statusText = document.getElementById("status");
+            const checkbox = document.getElementById("toggleCheckbox");
+            if (checkbox.checked) {
+                statusText.textContent = "Available";
+            } else {
+                statusText.textContent = "Not Available";
+            }
+        }
+    </script>
+
+</body>
+</html>
