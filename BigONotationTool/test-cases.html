@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big-O Notation Test Cases</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            padding: 20px;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: #333;
+        }
+        h1, h2 {
+            color: #1e3c72;
+        }
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #1e3c72;
+        }
+        a:hover {
+            color: #ff6b6b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Test Cases for Big-O Notation Estimator</h1>
+        <p>This document provides a set of test cases to validate the accuracy of the Big-O Notation Estimator.</p>
+        
+        <h2>1. Constant Time Complexity: O(1)</h2>
+        <pre>
+function getFirstElement(arr) {
+    return arr[0];
+}
+        </pre>
+        <p><strong>Expected Output:</strong> ✅ O(1) - Constant time</p>
+
+        <h2>2. Linear Time Complexity: O(n)</h2>
+        <pre>
+function printElements(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        console.log(arr[i]);
+    }
+}
+        </pre>
+        <p><strong>Expected Output:</strong> ✅ O(n) - Linear time</p>
+
+        <h2>3. Quadratic Time Complexity: O(n²)</h2>
+        <pre>
+function printPairs(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length; j++) {
+            console.log(arr[i], arr[j]);
+        }
+    }
+}
+        </pre>
+        <p><strong>Expected Output:</strong> ✅ O(n²) - Quadratic time</p>
+
+        <h2>4. Logarithmic Time Complexity: O(log n)</h2>
+        <pre>
+function binarySearch(arr, target) {
+    let left = 0, right = arr.length - 1;
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+        if (arr[mid] === target) return mid;
+        else if (arr[mid] < target) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+        </pre>
+        <p><strong>Expected Output:</strong> ✅ O(log n) - Logarithmic time</p>
+
+        <h2>How to Test</h2>
+        <p>1. Copy-paste the test case into the text area of your Big-O Notation Estimator.</p>
+        <p>2. Click on <strong>"Analyze Complexity"</strong>.</p>
+        <p>3. Compare the output with the expected result.</p>
+
+        <p><a href="BigOCalc.html">⬅ Back to Home</a></p>
+    </div>
+</body>
+</html>

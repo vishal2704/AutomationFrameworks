@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big-O Notation Estimator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+        }
+        nav {
+            background: #1e3c72;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-size: 18px;
+            margin: 0 15px;
+        }
+        nav a:hover {
+            color: #ff6b6b;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        textarea {
+            width: 100%;
+            height: 200px;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #ff4757;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .footer {
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+        .footer a {
+            color: #ffcc00;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer a:hover {
+            color: #ff6b6b;
+        }
+		textarea::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Menu -->
+    <nav>
+    <a href="BigOCalc.html">Home</a>
+    <a href="test-cases.html">Scenarios</a>
+	<a href="learn-big-o.html">Learn Big-O</a>.
+    </nav>
+
+    <div class="container">
+        <h2>Big-O Notation Estimator</h2>
+        <p>Enter your JavaScript function below to estimate its time complexity:</p>
+        <textarea id="codeInput" placeholder="function example(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        console.log(arr[i]);
+    }
+}"></textarea> <br>
+        <button onclick="analyzeComplexity()">Analyze Complexity</button>
+        <p id="result"></p>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Big-O Notation Estimator</p>
+        <a href="about.html">About</a> | 
+        <a href="privacy.html">Privacy Policy</a> | 
+        <a href="terms.html">Terms</a> | 
+        <a href="feedback.html">Feedback</a>
+    </div>
+
+    <script>
+        function countLoopDepth(code) {
+            let depth = 0, maxDepth = 0;
+            let lines = code.split('\\n');
+            
+            for (let line of lines) {
+                line = line.trim();
+                if (line.match(/(for|while)\\s*\\(.*\\)/)) {
+                    depth++;
+                    maxDepth = Math.max(maxDepth, depth);
+                } else if (line.includes('}')) {
+                    depth = Math.max(0, depth - 1);
+                }
+            }
+            return maxDepth;
+        }
+
+        function detectRecursion(code) {
+            let functionNames = code.match(/function\\s+(\\w+)\\s*\\(/g) || [];
+            return functionNames.some(name => new RegExp(name.split(' ')[1] + '\\\\(', 'g').test(code));
+        }
+
+        function analyzeComplexity() {
+    let code = document.getElementById("codeInput").value.trim();
+    if (!code) {
+        document.getElementById("result").innerText = "Please enter your code first, then click 'Analyze Complexity'!";
+        return;
+    }
+
+    let loopDepth = countLoopDepth(code);
+    let hasRecursion = detectRecursion(code);
+
+    let result;
+    if (hasRecursion) {
+        result = "O(2^n) or O(n!) - Recursion detected";
+    } else if (loopDepth === 0) {
+        result = "O(1) - Constant time";
+    } else if (loopDepth === 1) {
+        result = "O(n) - Linear time";
+    } else if (loopDepth === 2) {
+        result = "O(n^2) - Quadratic time";
+    } else {
+        result = `O(n^${loopDepth}) - Higher order polynomial time`;
+    }
+    document.getElementById("result").innerText = result;
+}
+    </script>
+
+</body>
+</html>
