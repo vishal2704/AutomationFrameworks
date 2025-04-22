@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Playground - Selectable List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('../images/component-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+        }
+        .side-panel {
+            width: 250px;
+            background: #000000;
+            color: #ffffff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 60px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        .side-panel .components-link {
+            padding: 15px;
+            background: #3498db;
+            text-align: center;
+            border-bottom: 2px solid #1a1a1a;
+        }
+        .side-panel .components-link a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .side-panel .components-link a:hover {
+            color: #b7d7e4;
+        }
+        .menu-section {
+            margin: 10px 0;
+        }
+        .menu-section > a {
+            display: block;
+            padding: 10px 15px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .menu-section > a:hover {
+            background: #3498db;
+        }
+        .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+        .submenu a {
+            display: block;
+            padding: 8px 15px;
+            color: #cccccc;
+            text-decoration: none;
+        }
+        .submenu a:hover {
+            background: #3498db;
+            color: #ffffff;
+        }
+        .expandable::after {
+            content: ' ▼';
+            font-size: 0.8em;
+            float: right;
+        }
+        .expandable.expanded::after {
+            content: ' ▲';
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            flex: 1;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        .component-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f1f1f1;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        li.selected {
+            background: #3498db;
+            color: white;
+        }
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+            display: none;
+        }
+        .success {
+            background: #27ae60;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-panel">
+        <div class="components-link">
+            <a href="../components.html">Components</a>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('elements-menu')">Elements</a>
+            <div id="elements-menu" class="submenu">
+                <a href="../Elements/checkboxes.html">Checkboxes</a>
+                <a href="../Elements/links.html">Links</a>
+                <a href="../Elements/radio-buttons.html">Radio Buttons</a>
+                <a href="../Elements/shadow-dom.html">Shadow DOM</a>
+                <a href="../Elements/buttons.html">Buttons</a>
+                <a href="../Elements/broken-links-images.html">Broken Links & Images</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('forms-menu')">Forms</a>
+            <div id="forms-menu" class="submenu">
+                <a href="../Forms/forms-page.html">Forms Page</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('alerts-frames-windows-menu')">Alerts, Frames & Windows</a>
+            <div id="alerts-frames-windows-menu" class="submenu">
+                <a href="../AlertsFramesWindows/windows-tabs.html">Windows and Tabs</a>
+                <a href="../AlertsFramesWindows/nested-frames.html">Nested Frames</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('widgets-menu')">Widget</a>
+            <div id="widgets-menu" class="submenu">
+                <a href="../Widget/accordion.html">Accordion</a>
+                <a href="../Widget/date-picker.html">Date Picker</a>
+                <a href="../Widget/slider.html">Slider</a>
+                <a href="../Widget/tabs.html">Tabs</a>
+                <a href="../Widget/tooltip.html">Tooltip</a>
+                <a href="../Widget/progress-bar.html">Progress Bar</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('interactables-menu')">Interactable</a>
+            <div id="interactables-menu" class="submenu">
+                <a href="menu.html">Menu</a>
+                <a href="drag-and-drop.html">Drag and Drop</a>
+                <a href="selectable-list.html">Selectable List</a>
+                <a href="simple-draggable-list.html">Simple Draggable List</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>Testing Playground - Selectable List</h1>
+
+            <div class="component-section">
+                <h2>Selectable List Test</h2>
+                <p><strong>Description:</strong> Tests a list where items can be selected.</p>
+                <ul id="selectableList">
+                    <li onclick="selectItem(this)">Item 1</li>
+                    <li onclick="selectItem(this)">Item 2</li>
+                    <li onclick="selectItem(this)">Item 3</li>
+                    <li onclick="selectItem(this)">Item 4</li>
+                </ul>
+                <div id="selectionMessage" class="message success"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu(menuId) {
+            const menu = document.getElementById(menuId);
+            const toggle = menu.previousElementSibling;
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+                toggle.classList.remove('expanded');
+            } else {
+                menu.style.display = 'block';
+                toggle.classList.add('expanded');
+            }
+        }
+
+        function selectItem(element) {
+            const items = document.querySelectorAll('#selectableList li');
+            const message = document.getElementById('selectionMessage');
+            
+            // Toggle selection
+            element.classList.toggle('selected');
+            
+            // Get all selected items
+            const selectedItems = Array.from(items)
+                .filter(item => item.classList.contains('selected'))
+                .map(item => item.textContent);
+            
+            // Update message
+            if (selectedItems.length > 0) {
+                message.textContent = `Selected: ${selectedItems.join(', ')}`;
+                message.style.display = 'block';
+            } else {
+                message.style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const interactablesMenu = document.getElementById('interactables-menu');
+            const interactablesToggle = interactablesMenu.previousElementSibling;
+            interactablesMenu.style.display = 'block';
+            interactablesToggle.classList.add('expanded');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933eaeb07dc51d62',t:'MTc0NTI1NzM5Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

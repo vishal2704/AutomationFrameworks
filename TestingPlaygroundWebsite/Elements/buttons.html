@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Playground - Buttons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('../images/component-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+        }
+        .side-panel {
+            width: 250px;
+            background: #000000;
+            color: #ffffff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 60px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        .side-panel .components-link {
+            padding: 15px;
+            background: #3498db; /* Blue background to stand out */
+            text-align: center;
+            border-bottom: 2px solid #1a1a1a;
+        }
+        .side-panel .components-link a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .side-panel .components-link a:hover {
+            color: #b7d7e4;
+        }
+        .menu-section {
+            margin: 10px 0;
+        }
+        .menu-section > a {
+            display: block;
+            padding: 10px 15px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .menu-section > a:hover {
+            background: #3498db;
+        }
+        .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+        .submenu a {
+            display: block;
+            padding: 8px 15px;
+            color: #cccccc;
+            text-decoration: none;
+        }
+        .submenu a:hover {
+            background: #3498db;
+            color: #ffffff;
+        }
+        .expandable::after {
+            content: ' ▼';
+            font-size: 0.8em;
+            float: right;
+        }
+        .expandable.expanded::after {
+            content: ' ▲';
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            flex: 1;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95); /* Match index.html for readability */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        .component-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.98); /* Match index.html for readability */
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+            display: none;
+        }
+        .success { background: #27ae60; color: white; }
+        .failure { background: #c0392b; color: white; }
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+    <div class="side-panel">
+        <div class="components-link">
+            <a href="../components.html">Components</a>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('elements-menu')">Elements</a>
+            <div id="elements-menu" class="submenu">
+                <a href="checkboxes.html">Checkboxes</a>
+                <a href="links.html">Links</a>
+                <a href="radio-buttons.html">Radio Buttons</a>
+                <a href="shadow-dom.html">Shadow DOM</a>
+                <a href="buttons.html">Buttons</a>
+                <a href="broken-links-images.html">Broken Links & Images</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('forms-menu')">Forms</a>
+            <div id="forms-menu" class="submenu">
+                <a href="../Forms/forms-page.html">Forms Page</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('alerts-frames-windows-menu')">Alerts, Frames & Windows</a>
+            <div id="alerts-frames-windows-menu" class="submenu">
+                <a href="../AlertsFramesWindows/windows-tabs.html">Windows and Tabs</a>
+                <a href="../AlertsFramesWindows/nested-frames.html">Nested Frames</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('widgets-menu')">Widget</a>
+            <div id="widgets-menu" class="submenu">
+                <a href="../Widget/accordion.html">Accordion</a>
+                <a href="../Widget/date-picker.html">Date Picker</a>
+                <a href="../Widget/slider.html">Slider</a>
+                <a href="../Widget/tabs.html">Tabs</a>
+                <a href="../Widget/tooltip.html">Tooltip</a>
+                <a href="../Widget/progress-bar.html">Progress Bar</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('interactables-menu')">Interactable</a>
+            <div id="interactables-menu" class="submenu">
+                <a href="../Interactable/menu.html">Menu</a>
+                <a href="../Interactable/drag-and-drop.html">Drag and Drop</a>
+                <a href="../Interactable/selectable-list.html">Selectable List</a>
+                <a href="../Interactable/simple-draggable-list.html">Simple Draggable List</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>Testing Playground - Buttons</h1>
+
+            <div class="component-section" id="buttons">
+                <h2>Buttons Test</h2>
+                <p><strong>Description:</strong> Tests button clicks with toggling states.</p>
+                <button id="successBtn" class="toggle-btn" onclick="showSuccess()" aria-label="Success button">Success</button>
+                <button id="failureBtn" class="toggle-btn" onclick="showFailure()" aria-label="Failure button">Failure</button>
+                <div id="buttonSuccess" class="message success">Button clicked successfully!</div>
+                <div id="buttonFailure" class="message failure">Button click failed!</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSuccess() {
+            try {
+                const btn = document.getElementById('successBtn');
+                if (!btn) throw new Error('Success button not found');
+                btn.classList.toggle('active');
+                showMessage(true, 'buttonSuccess');
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+
+        function showFailure() {
+            try {
+                const btn = document.getElementById('failureBtn');
+                if (!btn) throw new Error('Failure button not found');
+                btn.classList.toggle('active');
+                showMessage(true, 'buttonFailure');
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+
+        function showMessage(condition, successId, failureId) {
+            try {
+                const success = document.getElementById(successId);
+                const failure = failureId ? document.getElementById(failureId) : null;
+                if (!success) throw new Error(`Success message element with ID "${successId}" not found`);
+                if (failureId && !failure) throw new Error(`Failure message element with ID "${failureId}" not found`);
+                success.style.display = 'none';
+                if (failure) failure.style.display = 'none';
+                if (condition) {
+                    success.style.display = 'block';
+                    setTimeout(() => success.style.display = 'none', 2000);
+                } else if (failure) {
+                    failure.style.display = 'block';
+                    setTimeout(() => failure.style.display = 'none', 2000);
+                }
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+
+        // Automatically expand the "Elements" menu on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const elementsMenu = document.getElementById('elements-menu');
+            const elementsToggle = elementsMenu.previousElementSibling;
+            elementsMenu.style.display = 'block';
+            elementsToggle.classList.add('expanded');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933e898388b26760',t:'MTc0NTI1NTg3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

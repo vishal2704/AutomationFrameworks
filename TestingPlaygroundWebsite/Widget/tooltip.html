@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Playground - Tooltip</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('../images/component-bg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+        }
+        .side-panel {
+            width: 250px;
+            background: #000000;
+            color: #ffffff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 60px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        .side-panel .components-link {
+            padding: 15px;
+            background: #3498db;
+            text-align: center;
+            border-bottom: 2px solid #1a1a1a;
+        }
+        .side-panel .components-link a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .side-panel .components-link a:hover {
+            color: #b7d7e4;
+        }
+        .menu-section {
+            margin: 10px 0;
+        }
+        .menu-section > a {
+            display: block;
+            padding: 10px 15px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .menu-section > a:hover {
+            background: #3498db;
+        }
+        .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+        .submenu a {
+            display: block;
+            padding: 8px 15px;
+            color: #cccccc;
+            text-decoration: none;
+        }
+        .submenu a:hover {
+            background: #3498db;
+            color: #ffffff;
+        }
+        .expandable::after {
+            content: ' ▼';
+            font-size: 0.8em;
+            float: right;
+        }
+        .expandable.expanded::after {
+            content: ' ▲';
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            flex: 1;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        .component-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted #333;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background: #333;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-panel">
+        <div class="components-link">
+            <a href="../components.html">Components</a>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('elements-menu')">Elements</a>
+            <div id="elements-menu" class="submenu">
+                <a href="../Elements/checkboxes.html">Checkboxes</a>
+                <a href="../Elements/links.html">Links</a>
+                <a href="../Elements/radio-buttons.html">Radio Buttons</a>
+                <a href="../Elements/shadow-dom.html">Shadow DOM</a>
+                <a href="../Elements/buttons.html">Buttons</a>
+                <a href="../Elements/broken-links-images.html">Broken Links & Images</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('forms-menu')">Forms</a>
+            <div id="forms-menu" class="submenu">
+                <a href="../Forms/forms-page.html">Forms Page</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('alerts-frames-windows-menu')">Alerts, Frames & Windows</a>
+            <div id="alerts-frames-windows-menu" class="submenu">
+                <a href="../AlertsFramesWindows/windows-tabs.html">Windows and Tabs</a>
+                <a href="../AlertsFramesWindows/nested-frames.html">Nested Frames</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('widgets-menu')">Widget</a>
+            <div id="widgets-menu" class="submenu">
+                <a href="accordion.html">Accordion</a>
+                <a href="date-picker.html">Date Picker</a>
+                <a href="slider.html">Slider</a>
+                <a href="tabs.html">Tabs</a>
+                <a href="tooltip.html">Tooltip</a>
+                <a href="progress-bar.html">Progress Bar</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('interactables-menu')">Interactable</a>
+            <div id="interactables-menu" class="submenu">
+                <a href="../Interactable/menu.html">Menu</a>
+                <a href="../Interactable/drag-and-drop.html">Drag and Drop</a>
+                <a href="../Interactable/selectable-list.html">Selectable List</a>
+                <a href="../Interactable/simple-draggable-list.html">Simple Draggable List</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>Testing Playground - Tooltip</h1>
+
+            <div class="component-section">
+                <h2>Tooltip Test</h2>
+                <p><strong>Description:</strong> Tests tooltip functionality.</p>
+                <div class="tooltip">Hover over me
+                    <span class="tooltiptext">Tooltip text</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu(menuId) {
+            const menu = document.getElementById(menuId);
+            const toggle = menu.previousElementSibling;
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+                toggle.classList.remove('expanded');
+            } else {
+                menu.style.display = 'block';
+                toggle.classList.add('expanded');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const widgetsMenu = document.getElementById('widgets-menu');
+            const widgetsToggle = widgetsMenu.previousElementSibling;
+            widgetsMenu.style.display = 'block';
+            widgetsToggle.classList.add('expanded');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933ec2cdac41675f',t:'MTc0NTI1ODIxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";bSEXgetElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Playground - Broken Links & Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('../images/component-bg.jpg') no-repeat center center fixed; no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+        }
+        .side-panel {
+            width: 250px;
+            background: #000000;
+            color: #ffffff;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 60px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        .side-panel .components-link {
+            padding: 15px;
+            background: #3498db;
+            text-align: center;
+            border-bottom: 2px solid #1a1a1a;
+        }
+        .side-panel .components-link a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .side-panel .components-link a:hover {
+            color: #b7d7e4;
+        }
+        .menu-section {
+            margin: 10px 0;
+        }
+        .menu-section > a {
+            display: block;
+            padding: 10px 15px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .menu-section > a:hover {
+            background: #3498db;
+        }
+        .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+        .submenu a {
+            display: block;
+            padding: 8px 15px;
+            color: #cccccc;
+            text-decoration: none;
+        }
+        .submenu a:hover {
+            background: #3498db;
+            color: #ffffff;
+        }
+        .expandable::after {
+            content: ' ▼';
+            font-size: 0.8em;
+            float: right;
+        }
+        .expandable.expanded::after {
+            content: ' ▲';
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            flex: 1;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+        .component-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        img {
+            max-width: 200px;
+            margin: 10px 0;
+        }
+        .broken {
+            color: #c0392b;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="side-panel">
+        <div class="components-link">
+            <a href="../components.html" aria-label="Go to Components page">Components</a>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('elements-menu')">Elements</a>
+            <div id="elements-menu" class="submenu">
+                <a href="checkboxes.html" aria-label="Go to Checkboxes page">Checkboxes</a>
+                <a href="links.html" aria-label="Go to Links page">Links</a>
+                <a href="radio-buttons.html" aria-label="Go to Radio Buttons page">Radio Buttons</a>
+                <a href="shadow-dom.html" aria-label="Go to Shadow DOM page">Shadow DOM</a>
+                <a href="buttons.html" aria-label="Go to Buttons page">Buttons</a>
+                <a href="broken-links-images.html" aria-label="Go to Broken Links and Images page">Broken Links & Images</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('forms-menu')">Forms</a>
+            <div id="forms-menu" class="submenu">
+                <a href="../Forms/forms-page.html" aria-label="Go to Forms Page">Forms Page</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('alerts-frames-windows-menu')">Alerts, Frames & Windows</a>
+            <div id="alerts-frames-windows-menu" class="submenu">
+                <a href="../AlertsFramesWindows/windows-tabs.html" aria-label="Go to Windows and Tabs page">Windows and Tabs</a>
+                <a href="../AlertsFramesWindows/nested-frames.html" aria-label="Go to Nested Frames page">Nested Frames</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('widgets-menu')">Widget</a>
+            <div id="widgets-menu" class="submenu">
+                <a href="../Widget/accordion.html" aria-label="Go to Accordion page">Accordion</a>
+                <a href="../Widget/date-picker.html" aria-label="Go to Date Picker page">Date Picker</a>
+                <a href="../Widget/slider.html" aria-label="Go to Slider page">Slider</a>
+                <a href="../Widget/tabs.html" aria-label="Go to Tabs page">Tabs</a>
+                <a href="../Widget/tooltip.html" aria-label="Go to Tooltip page">Tooltip</a>
+                <a href="../Widget/progress-bar.html" aria-label="Go to Progress Bar page">Progress Bar</a>
+            </div>
+        </div>
+        <div class="menu-section">
+            <a class="expandable" onclick="toggleMenu('interactables-menu')">Interactable</a>
+            <div id="interactables-menu" class="submenu">
+                <a href="../Interactable/menu.html" aria-label="Go to Menu page">Menu</a>
+                <a href="../Interactable/drag-and-drop.html" aria-label="Go to Drag and Drop page">Drag and Drop</a>
+                <a href="../Interactable/selectable-list.html" aria-label="Go to Selectable List page">Selectable List</a>
+                <a href="../Interactable/simple-draggable-list.html" aria-label="Go to Simple Draggable List page">Simple Draggable List</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>Testing Playground - Broken Links & Images</h1>
+
+            <div class="component-section">
+                <h2>Broken Links Test</h2>
+                <p><strong>Description:</strong> Tests for broken links by including both broken and working links.</p>
+                <p><a href="https://nonexistent.example.com">Broken Link (nonexistent.example.com)</a></p>
+                <p><a href="https://www.example.com">Working Link (example.com)</a></p>
+            </div>
+
+            <div class="component-section">
+                <h2>Broken Images Test</h2>
+                <p><strong>Description:</strong> Tests for broken images by including both broken and working images.</p>
+                <p>Broken Image:</p>
+                <img src="https://nonexistent.example.com/image.jpg" alt="Broken Image" onerror="this.nextElementSibling.style.display='block';">
+                <span class="broken" style="display: none;" aria-live="polite">[Image Failed to Load]</span>
+                <p>Working Image:</p>
+                <img src="../images/images.jpg" alt="Working Image">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu(menuId) {
+            const menu = document.getElementById(menuId);
+            const toggle = menu.previousElementSibling;
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+                toggle.classList.remove('expanded');
+            } else {
+                menu.style.display = 'block';
+                toggle.classList.add('expanded');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const elementsMenu = document.getElementById('elements-menu');
+            const elementsToggle = elementsMenu.previousElementSibling;
+            elementsMenu.style.display = 'block';
+            elementsToggle.classList.add('expanded');
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'934808b5bc97a558',t:'MTc0NTM1NTQ1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body>
+</html>
