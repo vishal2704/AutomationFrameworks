@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing Playground - Accordion</title>
+    <title>Testing Playground - Dynamic ID</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,17 +55,17 @@
         .menu-section > a:hover {
             background: #3498db;
         }
-        .submenu {
+        .side-submenu {
             display: none;
             padding-left: 20px;
         }
-        .submenu a {
+        .side-submenu a {
             display: block;
             padding: 8px 15px;
             color: #cccccc;
             text-decoration: none;
         }
-        .submenu a:hover {
+        .side-submenu a:hover {
             background: #3498db;
             color: #ffffff;
         }
@@ -97,24 +97,21 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .accordion {
+        button {
+            padding: 8px;
             background: #3498db;
             color: white;
-            padding: 10px;
             border: none;
-            width: 100%;
-            text-align: left;
+            border-radius: 4px;
             cursor: pointer;
-            margin: 2px 0;
+            margin: 5px;
         }
-        .accordion:hover {
+        button:hover {
             background: #2980b9;
         }
-        .panel {
-            padding: 0 18px;
-            display: none;
-            background: #f1f1f1;
-            overflow: hidden;
+        p {
+            text-align: center;
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -125,65 +122,63 @@
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('elements-menu')">Elements</a>
-            <div id="elements-menu" class="submenu">
-                <a href="../Elements/checkboxes.html">Checkboxes</a>
-                <a href="../Elements/links.html">Links</a>
-                <a href="../Elements/radio-buttons.html">Radio Buttons</a>
-                <a href="../Elements/shadow-dom.html">Shadow DOM</a>
-                <a href="../Elements/buttons.html">Buttons</a>
-                <a href="../Elements/broken-links-images.html">Broken Links & Images</a>
+            <div id="elements-menu" class="side-submenu">
+                <a href="checkboxes.html" aria-label="Go to Checkboxes page">Checkboxes</a>
+                <a href="links.html" aria-label="Go to Links page">Links</a>
+                <a href="radio-buttons.html" aria-label="Go to Radio Buttons page">Radio Buttons</a>
+                <a href="shadow-dom.html" aria-label="Go to Shadow DOM page">Shadow DOM</a>
+                <a href="buttons.html" aria-label="Go to Buttons page">Buttons</a>
+                <a href="broken-links-images.html" aria-label="Go to Broken Links and Images page">Broken Links & Images</a>
+                <a href="dynamic-id.html" aria-label="Go to Dynamic ID page">Dynamic ID</a>
+                <a href="disabled-input.html" aria-label="Go to Disabled Input page">Disabled Input</a>
+                <a href="overlapped-elements.html" aria-label="Go to Overlapped Elements page">Overlapped Elements</a>
+                
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('forms-menu')">Forms</a>
-            <div id="forms-menu" class="submenu">
-                <a href="../Forms/forms-page.html">Forms Page</a>
+            <div id="forms-menu" class="side-submenu">
+                <a href="../Forms/forms-page.html" aria-label="Go to Forms Page">Forms Page</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('alerts-frames-windows-menu')">Alerts, Frames & Windows</a>
-            <div id="alerts-frames-windows-menu" class="submenu">
-                <a href="../AlertsFramesWindows/windows-tabs.html">Windows and Tabs</a>
-                <a href="../AlertsFramesWindows/nested-frames.html">Nested Frames</a>
+            <div id="alerts-frames-windows-menu" class="side-submenu">
+                <a href="../AlertsFramesWindows/windows-tabs.html" aria-label="Go to Windows and Tabs page">Windows and Tabs</a>
+                <a href="../AlertsFramesWindows/nested-frames.html" aria-label="Go to Nested Frames page">Nested Frames</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('widgets-menu')">Widget</a>
-            <div id="widgets-menu" class="submenu">
-                <a href="accordion.html">Accordion</a>
-                <a href="date-picker.html">Date Picker</a>
-                <a href="slider.html">Slider</a>
-                <a href="tabs.html">Tabs</a>
-                <a href="tooltip.html">Tooltip</a>
-                <a href="progress-bar.html">Progress Bar</a>
+            <div id="widgets-menu" class="side-submenu">
+                <a href="../Widget/accordion.html" aria-label="Go to Accordion page">Accordion</a>
+                <a href="../Widget/date-picker.html" aria-label="Go to Date Picker page">Date Picker</a>
+                <a href="../Widget/slider.html" aria-label="Go to Slider page">Slider</a>
+                <a href="../Widget/tabs.html" aria-label="Go to Tabs page">Tabs</a>
+                <a href="../Widget/tooltip.html" aria-label="Go to Tooltip page">Tooltip</a>
+                <a href="../Widget/progress-bar.html" aria-label="Go to Progress Bar page">Progress Bar</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('interactables-menu')">Interactable</a>
-            <div id="interactables-menu" class="submenu">
-                <a href="../Interactable/menu.html">Menu</a>
-                <a href="../Interactable/drag-and-drop.html">Drag and Drop</a>
-                <a href="../Interactable/selectable-list.html">Selectable List</a>
-                <a href="../Interactable/simple-draggable-list.html">Simple Draggable List</a>
+            <div id="interactables-menu" class="side-submenu">
+                <a href="../Interactable/menu.html" aria-label="Go to Menu page">Menu</a>
+                <a href="../Interactable/drag-and-drop.html" aria-label="Go to Drag and Drop page">Drag and Drop</a>
+                <a href="../Interactable/selectable-list.html" aria-label="Go to Selectable List page">Selectable List</a>
+                <a href="../Interactable/simple-draggable-list.html" aria-label="Go to Simple Draggable List page">Simple Draggable List</a>
             </div>
         </div>
     </div>
 
     <div class="main-content">
         <div class="container">
-            <h1>Testing Playground - Accordion</h1>
+            <h1>Testing Playground - Dynamic ID</h1>
 
             <div class="component-section">
-                <h2>Accordion Test</h2>
-                <p><strong>Description:</strong> Tests accordion functionality.</p>
-                <button class="accordion" onclick="toggleAccordion(this)">Section 1</button>
-                <div class="panel">
-                    <p>Content for Section 1.</p>
-                </div>
-                <button class="accordion" onclick="toggleAccordion(this)">Section 2</button>
-                <div class="panel">
-                    <p>Content for Section 2.</p>
-                </div>
+                <h2>Dynamic ID</h2>
+                <p><strong>Description:</strong> An element with a dynamically changing ID.</p>
+                <p>Element ID: <span id="dynamicId">dynamic-1</span></p>
+                <button onclick="changeId()">Change ID</button>
             </div>
         </div>
     </div>
@@ -201,18 +196,19 @@
             }
         }
 
-        function toggleAccordion(element) {
-            const panel = element.nextElementSibling;
-            panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
-            const widgetsMenu = document.getElementById('widgets-menu');
-            const widgetsToggle = widgetsMenu.previousElementSibling;
-            widgetsMenu.style.display = 'block';
-            widgetsToggle.classList.add('expanded');
+            const elementsMenu = document.getElementById('elements-menu');
+            const elementsToggle = elementsMenu.previousElementSibling;
+            elementsMenu.style.display = 'block';
+            elementsToggle.classList.add('expanded');
         });
+
+        let idCounter = 1;
+        function changeId() {
+            idCounter++;
+            document.getElementById('dynamicId').id = `dynamic-${idCounter}`;
+            document.querySelector('p span').textContent = `dynamic-${idCounter}`;
+        }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933ec2ce286432f8',t:'MTc0NTI1ODIxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>

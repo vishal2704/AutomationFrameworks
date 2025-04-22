@@ -28,7 +28,7 @@
         }
         .side-panel .components-link {
             padding: 15px;
-            background: #3498db; /* Blue background to stand out */
+            background: #3498db;
             text-align: center;
             border-bottom: 2px solid #1a1a1a;
         }
@@ -55,17 +55,17 @@
         .menu-section > a:hover {
             background: #3498db;
         }
-        .submenu {
+        .side-submenu {
             display: none;
             padding-left: 20px;
         }
-        .submenu a {
+        .side-submenu a {
             display: block;
             padding: 8px 15px;
             color: #cccccc;
             text-decoration: none;
         }
-        .submenu a:hover {
+        .side-submenu a:hover {
             background: #3498db;
             color: #ffffff;
         }
@@ -85,7 +85,7 @@
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95); /* Match index.html for readability */
+            background: rgba(255, 255, 255, 0.95);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
@@ -93,78 +93,139 @@
         .component-section {
             margin: 20px 0;
             padding: 15px;
-            background: rgba(255, 255, 255, 0.98); /* Match index.html for readability */
+            background: rgba(255, 255, 255, 0.98);
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .message {
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 3px;
-            display: none;
-        }
-        .success { background: #27ae60; color: white; }
-        .failure { background: #c0392b; color: white; }
         button {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 8px;
-            margin: 5px 0;
-            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 1em;
             cursor: pointer;
-            transition: background 0.3s;
+            border: none;
+            border-radius: 5px;
+            margin: 5px;
         }
-        button:hover { background: #2980b9; }
+        /* Basic Button */
+        .basic-button {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        /* Styled Button */
+        .styled-button {
+            background-color: #3498db;
+            color: #ffffff;
+            transition: background-color 0.3s;
+        }
+        .styled-button:hover {
+            background-color: #2980b9;
+        }
+        /* Icon Button */
+        .icon-button {
+            background-color: #27ae60;
+            color: #ffffff;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .icon-button::before {
+            content: '★';
+            font-size: 1.2em;
+        }
+        /* Disabled Button */
+        .disabled-button {
+            background-color: #cccccc;
+            color: #666666;
+            cursor: not-allowed;
+        }
+        /* Loading Button */
+        .loading-button {
+            background-color: #e67e22;
+            color: #ffffff;
+            position: relative;
+        }
+        .loading-button.loading::after {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        /* Toggle Button */
+        .toggle-button {
+            background-color: #8e44ad;
+            color: #ffffff;
+        }
+        .toggle-button.on {
+            background-color: #27ae60;
+        }
+        /* Counter Button */
+        .counter-button {
+            background-color: #c0392b;
+            color: #ffffff;
+        }
+        .counter-display {
+            margin-left: 10px;
+            font-size: 1em;
+        }
     </style>
 </head>
 <body>
     <div class="side-panel">
         <div class="components-link">
-            <a href="../components.html">Components</a>
+            <a href="../index.html" aria-label="Go to Components page">Components</a>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('elements-menu')">Elements</a>
-            <div id="elements-menu" class="submenu">
-                <a href="checkboxes.html">Checkboxes</a>
-                <a href="links.html">Links</a>
-                <a href="radio-buttons.html">Radio Buttons</a>
-                <a href="shadow-dom.html">Shadow DOM</a>
-                <a href="buttons.html">Buttons</a>
-                <a href="broken-links-images.html">Broken Links & Images</a>
+            <div id="elements-menu" class="side-submenu">
+                <a href="checkboxes.html" aria-label="Go to Checkboxes page">Checkboxes</a>
+                <a href="links.html" aria-label="Go to Links page">Links</a>
+                <a href="radio-buttons.html" aria-label="Go to Radio Buttons page">Radio Buttons</a>
+                <a href="shadow-dom.html" aria-label="Go to Shadow DOM page">Shadow DOM</a>
+                <a href="buttons.html" aria-label="Go to Buttons page">Buttons</a>
+                <a href="broken-links-images.html" aria-label="Go to Broken Links and Images page">Broken Links & Images</a>
+                <a href="dynamic-id.html" aria-label="Go to Dynamic ID page">Dynamic ID</a>
+                <a href="disabled-input.html" aria-label="Go to Disabled Input page">Disabled Input</a>
+                <a href="overlapped-elements.html" aria-label="Go to Overlapped Elements page">Overlapped Elements</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('forms-menu')">Forms</a>
-            <div id="forms-menu" class="submenu">
-                <a href="../Forms/forms-page.html">Forms Page</a>
+            <div id="forms-menu" class="side-submenu">
+                <a href="../Forms/forms-page.html" aria-label="Go to Forms Page">Forms Page</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('alerts-frames-windows-menu')">Alerts, Frames & Windows</a>
-            <div id="alerts-frames-windows-menu" class="submenu">
-                <a href="../AlertsFramesWindows/windows-tabs.html">Windows and Tabs</a>
-                <a href="../AlertsFramesWindows/nested-frames.html">Nested Frames</a>
+            <div id="alerts-frames-windows-menu" class="side-submenu">
+                <a href="../AlertsFramesWindows/windows-tabs.html" aria-label="Go to Windows and Tabs page">Windows and Tabs</a>
+                <a href="../AlertsFramesWindows/nested-frames.html" aria-label="Go to Nested Frames page">Nested Frames</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('widgets-menu')">Widget</a>
-            <div id="widgets-menu" class="submenu">
-                <a href="../Widget/accordion.html">Accordion</a>
-                <a href="../Widget/date-picker.html">Date Picker</a>
-                <a href="../Widget/slider.html">Slider</a>
-                <a href="../Widget/tabs.html">Tabs</a>
-                <a href="../Widget/tooltip.html">Tooltip</a>
-                <a href="../Widget/progress-bar.html">Progress Bar</a>
+            <div id="widgets-menu" class="side-submenu">
+                <a href="../Widget/accordion.html" aria-label="Go to Accordion page">Accordion</a>
+                <a href="../Widget/date-picker.html" aria-label="Go to Date Picker page">Date Picker</a>
+                <a href="../Widget/slider.html" aria-label="Go to Slider page">Slider</a>
+                <a href="../Widget/tabs.html" aria-label="Go to Tabs page">Tabs</a>
+                <a href="../Widget/tooltip.html" aria-label="Go to Tooltip page">Tooltip</a>
+                <a href="../Widget/progress-bar.html" aria-label="Go to Progress Bar page">Progress Bar</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('interactables-menu')">Interactable</a>
-            <div id="interactables-menu" class="submenu">
-                <a href="../Interactable/menu.html">Menu</a>
-                <a href="../Interactable/drag-and-drop.html">Drag and Drop</a>
-                <a href="../Interactable/selectable-list.html">Selectable List</a>
-                <a href="../Interactable/simple-draggable-list.html">Simple Draggable List</a>
+            <div id="interactables-menu" class="side-submenu">
+                <a href="../Interactable/menu.html" aria-label="Go to Menu page">Menu</a>
+                <a href="../Interactable/drag-and-drop.html" aria-label="Go to Drag and Drop page">Drag and Drop</a>
+                <a href="../Interactable/selectable-list.html" aria-label="Go to Selectable List page">Selectable List</a>
+                <a href="../Interactable/simple-draggable-list.html" aria-label="Go to Simple Draggable List page">Simple Draggable List</a>
             </div>
         </div>
     </div>
@@ -173,61 +234,88 @@
         <div class="container">
             <h1>Testing Playground - Buttons</h1>
 
-            <div class="component-section" id="buttons">
-                <h2>Buttons Test</h2>
-                <p><strong>Description:</strong> Tests button clicks with toggling states.</p>
-                <button id="successBtn" class="toggle-btn" onclick="showSuccess()" aria-label="Success button">Success</button>
-                <button id="failureBtn" class="toggle-btn" onclick="showFailure()" aria-label="Failure button">Failure</button>
-                <div id="buttonSuccess" class="message success">Button clicked successfully!</div>
-                <div id="buttonFailure" class="message failure">Button click failed!</div>
+            <div class="component-section">
+                <h2>Basic Button</h2>
+                <p><strong>Description:</strong> A standard button with default browser styling.</p>
+                <button class="basic-button" aria-label="Basic button">Basic Button</button>
+            </div>
+
+            <div class="component-section">
+                <h2>Styled Button</h2>
+                <p><strong>Description:</strong> A button with custom styling and hover effect.</p>
+                <button class="styled-button" aria-label="Styled button">Styled Button</button>
+            </div>
+
+            <div class="component-section">
+                <h2>Icon Button</h2>
+                <p><strong>Description:</strong> A button with an icon for visual enhancement.</p>
+                <button class="icon-button" aria-label="Icon button">Icon Button</button>
+            </div>
+
+            <div class="component-section">
+                <h2>Disabled Button</h2>
+                <p><strong>Description:</strong> A button in a disabled state.</p>
+                <button class="disabled-button" disabled aria-label="Disabled button" aria-disabled="true">Disabled Button</button>
+            </div>
+
+            <div class="component-section">
+                <h2>Loading Button</h2>
+                <p><strong>Description:</strong> A button that shows a loading state when clicked.</p>
+                <button class="loading-button" onclick="showLoading(this)" aria-label="Loading button">Click to Load</button>
+            </div>
+
+            <div class="component-section">
+                <h2>Toggle Button</h2>
+                <p><strong>Description:</strong> A button that toggles between two states.</p>
+                <button class="toggle-button" onclick="toggleButton(this)" aria-label="Toggle button" aria-pressed="false">Off</button>
+            </div>
+
+            <div class="component-section">
+                <h2>Button with Counter</h2>
+                <p><strong>Description:</strong> A button that increments a counter when clicked.</p>
+                <button class="counter-button" onclick="incrementCounter()" aria-label="Counter button">Click Me</button>
+                <span class="counter-display" id="counter">0</span>
             </div>
         </div>
     </div>
 
     <script>
-        function showSuccess() {
-            try {
-                const btn = document.getElementById('successBtn');
-                if (!btn) throw new Error('Success button not found');
-                btn.classList.toggle('active');
-                showMessage(true, 'buttonSuccess');
-            } catch (error) {
-                alert(`Error: ${error.message}`);
+        function toggleMenu(menuId) {
+            const menu = document.getElementById(menuId);
+            const toggle = menu.previousElementSibling;
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+                toggle.classList.remove('expanded');
+            } else {
+                menu.style.display = 'block';
+                toggle.classList.add('expanded');
             }
         }
 
-        function showFailure() {
-            try {
-                const btn = document.getElementById('failureBtn');
-                if (!btn) throw new Error('Failure button not found');
-                btn.classList.toggle('active');
-                showMessage(true, 'buttonFailure');
-            } catch (error) {
-                alert(`Error: ${error.message}`);
-            }
+        function showLoading(button) {
+            button.classList.add('loading');
+            button.textContent = 'Loading...';
+            button.disabled = true;
+            setTimeout(() => {
+                button.classList.remove('loading');
+                button.textContent = 'Click to Load';
+                button.disabled = false;
+            }, 2000);
         }
 
-        function showMessage(condition, successId, failureId) {
-            try {
-                const success = document.getElementById(successId);
-                const failure = failureId ? document.getElementById(failureId) : null;
-                if (!success) throw new Error(`Success message element with ID "${successId}" not found`);
-                if (failureId && !failure) throw new Error(`Failure message element with ID "${failureId}" not found`);
-                success.style.display = 'none';
-                if (failure) failure.style.display = 'none';
-                if (condition) {
-                    success.style.display = 'block';
-                    setTimeout(() => success.style.display = 'none', 2000);
-                } else if (failure) {
-                    failure.style.display = 'block';
-                    setTimeout(() => failure.style.display = 'none', 2000);
-                }
-            } catch (error) {
-                alert(`Error: ${error.message}`);
-            }
+        function toggleButton(button) {
+            const isOn = button.classList.contains('on');
+            button.classList.toggle('on');
+            button.textContent = isOn ? 'Off' : 'On';
+            button.setAttribute('aria-pressed', !isOn);
         }
 
-        // Automatically expand the "Elements" menu on page load
+        let counter = 0;
+        function incrementCounter() {
+            counter++;
+            document.getElementById('counter').textContent = counter;
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const elementsMenu = document.getElementById('elements-menu');
             const elementsToggle = elementsMenu.previousElementSibling;
@@ -235,6 +323,6 @@
             elementsToggle.classList.add('expanded');
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933e898388b26760',t:'MTc0NTI1NTg3MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'934838824c2353c4',t:'MTc0NTM1NzQwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing Playground - Slider</title>
+    <title>Testing Playground - Sliders</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,17 +55,17 @@
         .menu-section > a:hover {
             background: #3498db;
         }
-        .submenu {
+        .side-submenu {
             display: none;
             padding-left: 20px;
         }
-        .submenu a {
+        .side-submenu a {
             display: block;
             padding: 8px 15px;
             color: #cccccc;
             text-decoration: none;
         }
-        .submenu a:hover {
+        .side-submenu a:hover {
             background: #3498db;
             color: #ffffff;
         }
@@ -97,71 +97,169 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        input[type="range"] {
+        .slider-container {
+            position: relative;
             width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        .slider {
+            display: flex;
+            width: 300%; /* 3 slides, each 100% width */
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            width: 33.33%; /* Each slide takes 1/3 of the slider's width */
+            height: 200px;
+            background-color: #e0e0e0; /* Fallback background color for debugging */
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .nav-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .nav-buttons button {
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        input[type="range"] {
+            width: 80%;
+            margin: 10px auto;
+            display: block;
+        }
+        .dual-slider-container {
+            position: relative;
+            width: 80%;
+            margin: 20px auto;
+        }
+        .dual-slider-container input[type="range"] {
+            position: absolute;
+            width: 100%;
+            pointer-events: none;
+        }
+        .dual-slider-container input[type="range"]::-webkit-slider-thumb {
+            pointer-events: all;
+            position: relative;
+            z-index: 1;
+        }
+        p {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .slide-indicator {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #555;
         }
     </style>
 </head>
 <body>
     <div class="side-panel">
         <div class="components-link">
-            <a href="../components.html">Components</a>
+            <a href="../index.html" aria-label="Go to Components page">Components</a>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('elements-menu')">Elements</a>
-            <div id="elements-menu" class="submenu">
-                <a href="../Elements/checkboxes.html">Checkboxes</a>
-                <a href="../Elements/links.html">Links</a>
-                <a href="../Elements/radio-buttons.html">Radio Buttons</a>
-                <a href="../Elements/shadow-dom.html">Shadow DOM</a>
-                <a href="../Elements/buttons.html">Buttons</a>
-                <a href="../Elements/broken-links-images.html">Broken Links & Images</a>
+            <div id="elements-menu" class="side-submenu">
+                <a href="../Elements/checkboxes.html" aria-label="Go to Checkboxes page">Checkboxes</a>
+                <a href="../Elements/links.html" aria-label="Go to Links page">Links</a>
+                <a href="../Elements/radio-buttons.html" aria-label="Go to Radio Buttons page">Radio Buttons</a>
+                <a href="../Elements/shadow-dom.html" aria-label="Go to Shadow DOM page">Shadow DOM</a>
+                <a href="../Elements/buttons.html" aria-label="Go to Buttons page">Buttons</a>
+                <a href="../Elements/broken-links-images.html" aria-label="Go to Broken Links and Images page">Broken Links & Images</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('forms-menu')">Forms</a>
-            <div id="forms-menu" class="submenu">
-                <a href="../Forms/forms-page.html">Forms Page</a>
+            <div id="forms-menu" class="side-submenu">
+                <a href="../Forms/forms-page.html" aria-label="Go to Forms Page">Forms Page</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('alerts-frames-windows-menu')">Alerts, Frames & Windows</a>
-            <div id="alerts-frames-windows-menu" class="submenu">
-                <a href="../AlertsFramesWindows/windows-tabs.html">Windows and Tabs</a>
-                <a href="../AlertsFramesWindows/nested-frames.html">Nested Frames</a>
+            <div id="alerts-frames-windows-menu" class="side-submenu">
+                <a href="../AlertsFramesWindows/windows-tabs.html" aria-label="Go to Windows and Tabs page">Windows and Tabs</a>
+                <a href="../AlertsFramesWindows/nested-frames.html" aria-label="Go to Nested Frames page">Nested Frames</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('widgets-menu')">Widget</a>
-            <div id="widgets-menu" class="submenu">
-                <a href="accordion.html">Accordion</a>
-                <a href="date-picker.html">Date Picker</a>
-                <a href="slider.html">Slider</a>
-                <a href="tabs.html">Tabs</a>
-                <a href="tooltip.html">Tooltip</a>
-                <a href="progress-bar.html">Progress Bar</a>
+            <div id="widgets-menu" class="side-submenu">
+                <a href="accordion.html" aria-label="Go to Accordion page">Accordion</a>
+                <a href="date-picker.html" aria-label="Go to Date Picker page">Date Picker</a>
+                <a href="slider.html" aria-label="Go to Slider page">Slider</a>
+                <a href="tabs.html" aria-label="Go to Tabs page">Tabs</a>
+                <a href="tooltip.html" aria-label="Go to Tooltip page">Tooltip</a>
+                <a href="progress-bar.html" aria-label="Go to Progress Bar page">Progress Bar</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('interactables-menu')">Interactable</a>
-            <div id="interactables-menu" class="submenu">
-                <a href="../Interactable/menu.html">Menu</a>
-                <a href="../Interactable/drag-and-drop.html">Drag and Drop</a>
-                <a href="../Interactable/selectable-list.html">Selectable List</a>
-                <a href="../Interactable/simple-draggable-list.html">Simple Draggable List</a>
+            <div id="interactables-menu" class="side-submenu">
+                <a href="../Interactable/menu.html" aria-label="Go to Menu page">Menu</a>
+                <a href="../Interactable/drag-and-drop.html" aria-label="Go to Drag and Drop page">Drag and Drop</a>
+                <a href="../Interactable/selectable-list.html" aria-label="Go to Selectable List page">Selectable List</a>
+                <a href="../Interactable/simple-draggable-list.html" aria-label="Go to Simple Draggable List page">Simple Draggable List</a>
             </div>
         </div>
     </div>
 
     <div class="main-content">
         <div class="container">
-            <h1>Testing Playground - Slider</h1>
+            <h1>Testing Playground - Sliders</h1>
 
             <div class="component-section">
-                <h2>Slider Test</h2>
-                <p><strong>Description:</strong> Tests slider functionality.</p>
-                <input type="range" min="0" max="100" value="50" id="slider" oninput="updateSlider()">
-                <p>Value: <span id="sliderValue">50</span></p>
+                <h2>Range Slider</h2>
+                <p><strong>Description:</strong> A range slider to adjust the font size of the text below.</p>
+                <input type="range" id="fontSizeSlider" min="10" max="50" value="16" aria-label="Adjust font size">
+                <p id="fontSizeText" style="font-size: 16px;">Sample Text</p>
+            </div>
+
+            <div class="component-section">
+                <h2>Image Slider</h2>
+                <p><strong>Description:</strong> An image slider with navigation buttons.</p>
+                <div class="slider-container">
+                    <div class="slider" id="imageSlider">
+                        <div class="slide">
+                            <img src="https://picsum.photos/900/200?random=1" alt="Slide 1" onerror="this.onerror=null; this.src='https://picsum.photos/900/200?random=4'; this.alt='Failed to load Slide 1';">
+                        </div>
+                        <div class="slide">
+                            <img src="https://picsum.photos/900/200?random=2" alt="Slide 2" onerror="this.onerror=null; this.src='https://picsum.photos/900/200?random=5'; this.alt='Failed to load Slide 2';">
+                        </div>
+                        <div class="slide">
+                            <img src="https://picsum.photos/900/200?random=3" alt="Slide 3" onerror="this.onerror=null; this.src='https://picsum.photos/900/200?random=6'; this.alt='Failed to load Slide 3';">
+                        </div>
+                    </div>
+                    <div class="nav-buttons">
+                        <button id="prevBtn" aria-label="Previous slide">←</button>
+                        <button id="nextBtn" aria-label="Next slide">→</button>
+                    </div>
+                </div>
+                <p class="slide-indicator" id="slideIndicator">Slide 1 of 3</p>
+            </div>
+
+            <div class="component-section">
+                <h2>Dual-Point Range Slider</h2>
+                <p><strong>Description:</strong> A dual-point range slider to select a range of values (e.g., price range).</p>
+                <div class="dual-slider-container">
+                    <input type="range" id="minSlider" min="0" max="100" value="20" aria-label="Minimum value">
+                    <input type="range" id="maxSlider" min="0" max="100" value="80" aria-label="Maximum value">
+                </div>
+                <p id="rangeDisplay">Range: 20 - 80</p>
             </div>
         </div>
     </div>
@@ -179,19 +277,65 @@
             }
         }
 
-        function updateSlider() {
-            const slider = document.getElementById('slider');
-            const value = document.getElementById('sliderValue');
-            value.textContent = slider.value;
-        }
-
         document.addEventListener('DOMContentLoaded', function() {
             const widgetsMenu = document.getElementById('widgets-menu');
             const widgetsToggle = widgetsMenu.previousElementSibling;
             widgetsMenu.style.display = 'block';
             widgetsToggle.classList.add('expanded');
+
+            // Range Slider
+            const fontSizeSlider = document.getElementById('fontSizeSlider');
+            const fontSizeText = document.getElementById('fontSizeText');
+            fontSizeSlider.addEventListener('input', () => {
+                fontSizeText.style.fontSize = `${fontSizeSlider.value}px`;
+            });
+
+            // Image Slider
+            const imageSlider = document.getElementById('imageSlider');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideIndicator = document.getElementById('slideIndicator');
+            let currentSlide = 0;
+            const totalSlides = imageSlider.children.length;
+
+            function showSlide(index) {
+                if (index >= totalSlides) currentSlide = 0;
+                else if (index < 0) currentSlide = totalSlides - 1;
+                else currentSlide = index;
+                imageSlider.style.transform = `translateX(-${currentSlide * 33.33}%)`;
+                slideIndicator.textContent = `Slide ${currentSlide + 1} of ${totalSlides}`;
+                console.log(`Showing slide ${currentSlide + 1} of ${totalSlides}`);
+            }
+
+            // Initialize the slider position
+            showSlide(currentSlide);
+
+            prevBtn.addEventListener('click', () => {
+                console.log('Previous button clicked');
+                showSlide(currentSlide - 1);
+            });
+
+            nextBtn.addEventListener('click', () => {
+                console.log('Next button clicked');
+                showSlide(currentSlide + 1);
+            });
+
+            // Dual-Point Range Slider
+            const minSlider = document.getElementById('minSlider');
+            const maxSlider = document.getElementById('maxSlider');
+            const rangeDisplay = document.getElementById('rangeDisplay');
+
+            function updateRangeDisplay() {
+                const minValue = Math.min(minSlider.value, maxSlider.value);
+                const maxValue = Math.max(minSlider.value, maxSlider.value);
+                minSlider.value = minValue;
+                maxSlider.value = maxValue;
+                rangeDisplay.textContent = `Range: ${minValue} - ${maxValue}`;
+            }
+
+            minSlider.addEventListener('input', updateRangeDisplay);
+            maxSlider.addEventListener('input', updateRangeDisplay);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933ec2ced82332e0',t:'MTc0NTI1ODIxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>

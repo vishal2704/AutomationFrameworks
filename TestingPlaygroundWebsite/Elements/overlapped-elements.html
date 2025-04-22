@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing Playground - Radio Buttons</title>
+    <title>Testing Playground - Overlapped Elements</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -97,6 +97,26 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+        .window-container {
+            width: 420px; /* Increased width by 20% (from 350px) */
+            margin: 10px auto;
+            border: 2px solid #333;
+            border-radius: 5px;
+            background: #f0f0f0;
+        }
+        .window-title {
+            background: #4682b4;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #333;
+        }
+        .scrollable-content {
+            position: relative;
+            height: 183px; /* Adjusted to reduce total window-container height by 30% (from 324px to 227px) */
+            overflow-y: auto;
+            padding: 20px;
+        }
         .form-group {
             margin-bottom: 20px;
         }
@@ -105,62 +125,34 @@
             margin-bottom: 5px;
             font-weight: bold;
         }
+        .form-group input[type="text"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            height: 80px;
+            resize: none;
+        }
+        .form-group .checkbox-group,
         .form-group .radio-group {
             display: flex;
-            flex-direction: column;
+            align-items: center;
             gap: 10px;
+        }
+        .form-group .radio-group {
+            flex-direction: column;
+            gap: 5px;
             align-items: flex-start;
         }
         .form-group .radio-group div {
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-        /* Custom Radio Button Styling */
-        .form-group .custom-radio-group input[type="radio"] {
-            appearance: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            width: 0;
-            height: 0;
-            position: absolute;
-        }
-        .form-group .custom-radio-group label {
-            position: relative;
-            padding-left: 30px;
-            cursor: pointer;
-            font-weight: normal;
-            margin-bottom: 0;
-        }
-        .form-group .custom-radio-group label::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            border: 2px solid #4682b4;
-            border-radius: 50%;
-            background: #fff;
-            box-sizing: border-box;
-        }
-        .form-group .custom-radio-group input[type="radio"]:checked + label::before {
-            background: #4682b4;
-        }
-        .form-group .custom-radio-group input[type="radio"]:checked + label::after {
-            content: '';
-            position: absolute;
-            left: 6px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #fff;
-        }
-        .form-group .custom-radio-group label:hover::before {
-            border-color: #ff6347;
         }
         p {
             text-align: center;
@@ -224,43 +216,49 @@
 
     <div class="main-content">
         <div class="container">
-            <h1>Testing Playground - Radio Buttons</h1>
+            <h1>Testing Playground - Overlapped Elements</h1>
 
             <div class="component-section">
-                <h2>Standard Radio Buttons</h2>
-                <p><strong>Description:</strong> A set of standard radio buttons.</p>
-                <div class="form-group">
-                    <label>Standard Radio Buttons:</label>
-                    <div class="radio-group">
-                        <div>
-                            <input type="radio" id="standardRadio1" name="standardRadioGroup" aria-label="Standard radio button 1">
-                            <label for="standardRadio1">Option A</label>
+                <h2>Overlapped Elements</h2>
+                <p><strong>Description:</strong> A scrollable window with various elements.</p>
+                <div class="window-container">
+                    <div class="window-title">Form Window</div>
+                    <div class="scrollable-content">
+                        <div class="form-group">
+                            <label for="textInput">Text Input:</label>
+                            <input type="text" id="textInput" placeholder="Enter text..." aria-label="Text input">
                         </div>
-                        <div>
-                            <input type="radio" id="standardRadio2" name="standardRadioGroup" aria-label="Standard radio button 2">
-                            <label for="standardRadio2">Option B</label>
+                        <div class="form-group">
+                            <label>Checkbox:</label>
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="checkbox1" aria-label="Checkbox">
+                                <label for="checkbox1">Option 1</label>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="component-section">
-                <h2>Custom Radio Buttons</h2>
-                <p><strong>Description:</strong> A set of custom-styled radio buttons.</p>
-                <div class="form-group">
-                    <label>Custom Radio Buttons:</label>
-                    <div class="radio-group custom-radio-group">
-                        <div>
-                            <input type="radio" id="customRadio1" name="customRadioGroup" aria-label="Custom radio button 1">
-                            <label for="customRadio1">Choice 1</label>
+                        <div class="form-group">
+                            <label>Radio Buttons:</label>
+                            <div class="radio-group">
+                                <div>
+                                    <input type="radio" id="radio1" name="radioGroup" aria-label="Radio button 1">
+                                    <label for="radio1">Option A</label>
+                                </div>
+                                <div>
+                                    <input type="radio" id="radio2" name="radioGroup" aria-label="Radio button 2">
+                                    <label for="radio2">Option B</label>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <input type="radio" id="customRadio2" name="customRadioGroup" aria-label="Custom radio button 2">
-                            <label for="customRadio2">Choice 2</label>
+                        <div class="form-group">
+                            <label for="dropdown">Dropdown:</label>
+                            <select id="dropdown" aria-label="Dropdown menu">
+                                <option value="option1">Option 1</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+                            </select>
                         </div>
-                        <div>
-                            <input type="radio" id="customRadio3" name="customRadioGroup" aria-label="Custom radio button 3">
-                            <label for="customRadio3">Choice 3</label>
+                        <div class="form-group">
+                            <label for="textArea">Text Area:</label>
+                            <textarea id="textArea" placeholder="Enter your message..." aria-label="Text area"></textarea>
                         </div>
                     </div>
                 </div>

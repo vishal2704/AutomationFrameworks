@@ -55,17 +55,17 @@
         .menu-section > a:hover {
             background: #3498db;
         }
-        .submenu {
+        .side-submenu {
             display: none;
             padding-left: 20px;
         }
-        .submenu a {
+        .side-submenu a {
             display: block;
             padding: 8px 15px;
             color: #cccccc;
             text-decoration: none;
         }
-        .submenu a:hover {
+        .side-submenu a:hover {
             background: #3498db;
             color: #ffffff;
         }
@@ -97,66 +97,137 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
         label {
-            display: block;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        .checkbox-group div {
             margin: 5px 0;
         }
-        .message {
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 3px;
-            display: none;
+        /* Custom Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin-right: 10px;
         }
-        .success { background: #27ae60; color: white; }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #27ae60;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        /* Hidden Input */
+        .hidden-input {
+            display: none;
+            margin-top: 10px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+        /* Visual Indicator */
+        .indicator-box {
+            width: 100px;
+            height: 40px;
+            margin-top: 10px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .indicator-box.active {
+            background-color: #3498db;
+        }
     </style>
 </head>
 <body>
     <div class="side-panel">
         <div class="components-link">
-            <a href="../components.html">Components</a>
+            <a href="../index.html" aria-label="Go to Components page">Components</a>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('elements-menu')">Elements</a>
-            <div id="elements-menu" class="submenu">
-                <a href="checkboxes.html">Checkboxes</a>
-                <a href="links.html">Links</a>
-                <a href="radio-buttons.html">Radio Buttons</a>
-                <a href="shadow-dom.html">Shadow DOM</a>
-                <a href="buttons.html">Buttons</a>
-                <a href="broken-links-images.html">Broken Links & Images</a>
+            <div id="elements-menu" class="side-submenu">
+                <a href="checkboxes.html" aria-label="Go to Checkboxes page">Checkboxes</a>
+                <a href="links.html" aria-label="Go to Links page">Links</a>
+                <a href="radio-buttons.html" aria-label="Go to Radio Buttons page">Radio Buttons</a>
+                <a href="shadow-dom.html" aria-label="Go to Shadow DOM page">Shadow DOM</a>
+                <a href="buttons.html" aria-label="Go to Buttons page">Buttons</a>
+                <a href="broken-links-images.html" aria-label="Go to Broken Links and Images page">Broken Links & Images</a>
+                <a href="dynamic-id.html" aria-label="Go to Dynamic ID page">Dynamic ID</a>
+                <a href="disabled-input.html" aria-label="Go to Disabled Input page">Disabled Input</a>
+                <a href="overlapped-elements.html" aria-label="Go to Overlapped Elements page">Overlapped Elements</a>
+                
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('forms-menu')">Forms</a>
-            <div id="forms-menu" class="submenu">
-                <a href="../Forms/forms-page.html">Forms Page</a>
+            <div id="forms-menu" class="side-submenu">
+                <a href="../Forms/forms-page.html" aria-label="Go to Forms Page">Forms Page</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('alerts-frames-windows-menu')">Alerts, Frames & Windows</a>
-            <div id="alerts-frames-windows-menu" class="submenu">
-                <a href="../AlertsFramesWindows/windows-tabs.html">Windows and Tabs</a>
-                <a href="../AlertsFramesWindows/nested-frames.html">Nested Frames</a>
+            <div id="alerts-frames-windows-menu" class="side-submenu">
+                <a href="../AlertsFramesWindows/windows-tabs.html" aria-label="Go to Windows and Tabs page">Windows and Tabs</a>
+                <a href="../AlertsFramesWindows/nested-frames.html" aria-label="Go to Nested Frames page">Nested Frames</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('widgets-menu')">Widget</a>
-            <div id="widgets-menu" class="submenu">
-                <a href="../Widget/accordion.html">Accordion</a>
-                <a href="../Widget/date-picker.html">Date Picker</a>
-                <a href="../Widget/slider.html">Slider</a>
-                <a href="../Widget/tabs.html">Tabs</a>
-                <a href="../Widget/tooltip.html">Tooltip</a>
-                <a href="../Widget/progress-bar.html">Progress Bar</a>
+            <div id="widgets-menu" class="side-submenu">
+                <a href="../Widget/accordion.html" aria-label="Go to Accordion page">Accordion</a>
+                <a href="../Widget/date-picker.html" aria-label="Go to Date Picker page">Date Picker</a>
+                <a href="../Widget/slider.html" aria-label="Go to Slider page">Slider</a>
+                <a href="../Widget/tabs.html" aria-label="Go to Tabs page">Tabs</a>
+                <a href="../Widget/tooltip.html" aria-label="Go to Tooltip page">Tooltip</a>
+                <a href="../Widget/progress-bar.html" aria-label="Go to Progress Bar page">Progress Bar</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('interactables-menu')">Interactable</a>
-            <div id="interactables-menu" class="submenu">
-                <a href="../Interactable/menu.html">Menu</a>
-                <a href="../Interactable/drag-and-drop.html">Drag and Drop</a>
-                <a href="../Interactable/selectable-list.html">Selectable List</a>
-                <a href="../Interactable/simple-draggable-list.html">Simple Draggable List</a>
+            <div id="interactables-menu" class="side-submenu">
+                <a href="../Interactable/menu.html" aria-label="Go to Menu page">Menu</a>
+                <a href="../Interactable/drag-and-drop.html" aria-label="Go to Drag and Drop page">Drag and Drop</a>
+                <a href="../Interactable/selectable-list.html" aria-label="Go to Selectable List page">Selectable List</a>
+                <a href="../Interactable/simple-draggable-list.html" aria-label="Go to Simple Draggable List page">Simple Draggable List</a>
             </div>
         </div>
     </div>
@@ -166,12 +237,92 @@
             <h1>Testing Playground - Checkboxes</h1>
 
             <div class="component-section">
-                <h2>Checkboxes Test</h2>
-                <p><strong>Description:</strong> Tests checkbox selection.</p>
-                <label><input type="checkbox" id="option1" onchange="checkCheckboxes()"> Option 1</label>
-                <label><input type="checkbox" id="option2" onchange="checkCheckboxes()"> Option 2</label>
-                <label><input type="checkbox" id="option3" onchange="checkCheckboxes()"> Option 3</label>
-                <div id="checkboxSuccess" class="message success">At least one checkbox selected!</div>
+                <h2>Basic Checkboxes</h2>
+                <p><strong>Description:</strong> Standard checkboxes for testing basic functionality.</p>
+                <div class="checkbox-group">
+                    <div>
+                        <input type="checkbox" id="basic1" aria-label="Option 1">
+                        <label for="basic1">Option 1</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="basic2" aria-label="Option 2">
+                        <label for="basic2">Option 2</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="basic3" aria-label="Option 3">
+                        <label for="basic3">Option 3</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Toggle Switch Checkbox</h2>
+                <p><strong>Description:</strong> A checkbox styled as a toggle switch.</p>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggleSwitch" aria-label="Toggle switch">
+                    <span class="slider"></span>
+                </label>
+                <label for="toggleSwitch">Toggle Me</label>
+            </div>
+
+            <div class="component-section">
+                <h2>Checkbox Group with Select All</h2>
+                <p><strong>Description:</strong> A group of checkboxes with a "Select All" option.</p>
+                <div class="checkbox-group">
+                    <div>
+                        <input type="checkbox" id="selectAll" onclick="toggleSelectAll()" aria-label="Select all options">
+                        <label for="selectAll">Select All</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="group1" class="group-checkbox" aria-label="Group option 1">
+                        <label for="group1">Option 1</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="group2" class="group-checkbox" aria-label="Group option 2">
+                        <label for="group2">Option 2</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="group3" class="group-checkbox" aria-label="Group option 3">
+                        <label for="group3">Option 3</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Disabled Checkbox</h2>
+                <p><strong>Description:</strong> A checkbox in a disabled state.</p>
+                <div class="checkbox-group">
+                    <div>
+                        <input type="checkbox" id="disabledCheckbox" disabled aria-label="Disabled checkbox" aria-disabled="true">
+                        <label for="disabledCheckbox">Disabled Option</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Checkbox with Hidden Input</h2>
+                <p><strong>Description:</strong> A checkbox that reveals a hidden input field when checked.</p>
+                <div class="checkbox-group">
+                    <div>
+                        <input type="checkbox" id="revealInput" onclick="toggleHiddenInput()" aria-label="Reveal hidden input">
+                        <label for="revealInput">Show Hidden Input</label>
+                    </div>
+                    <div class="hidden-input" id="hiddenInputField">
+                        <input type="text" id="additionalInput" placeholder="Enter additional info" aria-label="Additional information input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="component-section">
+                <h2>Checkbox with Visual Indicator</h2>
+                <p><strong>Description:</strong> A checkbox that changes a visual indicator when checked.</p>
+                <div class="checkbox-group">
+                    <div>
+                        <input type="checkbox" id="indicatorCheckbox" onclick="toggleIndicator()" aria-label="Toggle visual indicator">
+                        <label for="indicatorCheckbox">Toggle Indicator</label>
+                    </div>
+                    <div class="indicator-box" id="indicatorBox"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -189,12 +340,24 @@
             }
         }
 
-        function checkCheckboxes() {
-            const option1 = document.getElementById('option1').checked;
-            const option2 = document.getElementById('option2').checked;
-            const option3 = document.getElementById('option3').checked;
-            const success = document.getElementById('checkboxSuccess');
-            success.style.display = (option1 || option2 || option3) ? 'block' : 'none';
+        function toggleSelectAll() {
+            const selectAll = document.getElementById('selectAll');
+            const checkboxes = document.querySelectorAll('.group-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = selectAll.checked;
+            });
+        }
+
+        function toggleHiddenInput() {
+            const checkbox = document.getElementById('revealInput');
+            const hiddenInput = document.getElementById('hiddenInputField');
+            hiddenInput.style.display = checkbox.checked ? 'block' : 'none';
+        }
+
+        function toggleIndicator() {
+            const checkbox = document.getElementById('indicatorCheckbox');
+            const indicator = document.getElementById('indicatorBox');
+            indicator.classList.toggle('active', checkbox.checked);
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -204,6 +367,6 @@
             elementsToggle.classList.add('expanded');
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933e92868b61afc2',t:'MTc0NTI1NjIzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'934838824c2353c4',t:'MTc0NTM1NzQwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>

@@ -97,11 +97,12 @@
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        input {
+        input, select {
             margin: 5px 0;
             padding: 8px;
             border: 1px solid #ddd;
             border-radius: 4px;
+            font-size: 1em;
         }
         .message {
             padding: 10px;
@@ -109,56 +110,77 @@
             border-radius: 3px;
             display: none;
         }
-        .success { background: #27ae60; color: white; }
+        .success {
+            background: #27ae60;
+            color: white;
+        }
+        .error {
+            background: #c0392b;
+            color: white;
+        }
+        .custom-date-picker, .text-date-picker {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .custom-date-picker select {
+            width: 100px;
+        }
+        .text-date-picker input {
+            width: 60px;
+        }
+        .text-date-picker input:nth-child(3) {
+            width: 80px;
+        }
     </style>
 </head>
 <body>
     <div class="side-panel">
         <div class="components-link">
-            <a href="../components.html">Components</a>
+            <a href="../index.html" aria-label="Go to Components page">Components</a>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('elements-menu')">Elements</a>
             <div id="elements-menu" class="submenu">
-                <a href="../Elements/checkboxes.html">Checkboxes</a>
-                <a href="../Elements/links.html">Links</a>
-                <a href="../Elements/radio-buttons.html">Radio Buttons</a>
-                <a href="../Elements/shadow-dom.html">Shadow DOM</a>
-                <a href="../Elements/buttons.html">Buttons</a>
-                <a href="../Elements/broken-links-images.html">Broken Links & Images</a>
+                <a href="../Elements/checkboxes.html" aria-label="Go to Checkboxes page">Checkboxes</a>
+                <a href="../Elements/links.html" aria-label="Go to Links page">Links</a>
+                <a href="../Elements/radio-buttons.html" aria-label="Go to Radio Buttons page">Radio Buttons</a>
+                <a href="../Elements/shadow-dom.html" aria-label="Go to Shadow DOM page">Shadow DOM</a>
+                <a href="../Elements/buttons.html" aria-label="Go to Buttons page">Buttons</a>
+                <a href="../Elements/broken-links-images.html" aria-label="Go to Broken Links and Images page">Broken Links & Images</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('forms-menu')">Forms</a>
             <div id="forms-menu" class="submenu">
-                <a href="../Forms/forms-page.html">Forms Page</a>
+                <a href="../Forms/forms-page.html" aria-label="Go to Forms Page">Forms Page</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('alerts-frames-windows-menu')">Alerts, Frames & Windows</a>
             <div id="alerts-frames-windows-menu" class="submenu">
-                <a href="../AlertsFramesWindows/windows-tabs.html">Windows and Tabs</a>
-                <a href="../AlertsFramesWindows/nested-frames.html">Nested Frames</a>
+                <a href="../AlertsFramesWindows/windows-tabs.html" aria-label="Go to Windows and Tabs page">Windows and Tabs</a>
+                <a href="../AlertsFramesWindows/nested-frames.html" aria-label="Go to Nested Frames page">Nested Frames</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('widgets-menu')">Widget</a>
             <div id="widgets-menu" class="submenu">
-                <a href="accordion.html">Accordion</a>
-                <a href="date-picker.html">Date Picker</a>
-                <a href="slider.html">Slider</a>
-                <a href="tabs.html">Tabs</a>
-                <a href="tooltip.html">Tooltip</a>
-                <a href="progress-bar.html">Progress Bar</a>
+                <a href="accordion.html" aria-label="Go to Accordion page">Accordion</a>
+                <a href="date-picker.html" aria-label="Go to Date Picker page">Date Picker</a>
+                <a href="slider.html" aria-label="Go to Slider page">Slider</a>
+                <a href="tabs.html" aria-label="Go to Tabs page">Tabs</a>
+                <a href="tooltip.html" aria-label="Go to Tooltip page">Tooltip</a>
+                <a href="progress-bar.html" aria-label="Go to Progress Bar page">Progress Bar</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('interactables-menu')">Interactable</a>
             <div id="interactables-menu" class="submenu">
-                <a href="../Interactable/menu.html">Menu</a>
-                <a href="../Interactable/drag-and-drop.html">Drag and Drop</a>
-                <a href="../Interactable/selectable-list.html">Selectable List</a>
-                <a href="../Interactable/simple-draggable-list.html">Simple Draggable List</a>
+                <a href="../Interactable/menu.html" aria-label="Go to Menu page">Menu</a>
+                <a href="../Interactable/drag-and-drop.html" aria-label="Go to Drag and Drop page">Drag and Drop</a>
+                <a href="../Interactable/selectable-list.html" aria-label="Go to Selectable List page">Selectable List</a>
+                <a href="../Interactable/simple-draggable-list.html" aria-label="Go to Simple Draggable List page">Simple Draggable List</a>
             </div>
         </div>
     </div>
@@ -168,10 +190,72 @@
             <h1>Testing Playground - Date Picker</h1>
 
             <div class="component-section">
-                <h2>Date Picker Test</h2>
-                <p><strong>Description:</strong> Tests date picker functionality.</p>
-                <input type="date" id="datePicker" onchange="selectDate()">
+                <h2>Basic Date Picker</h2>
+                <p><strong>Description:</strong> A standard date picker using the native HTML input element.</p>
+                <input type="date" id="datePicker" onchange="selectDate()" aria-label="Select a date">
                 <div id="dateSuccess" class="message success"></div>
+            </div>
+
+            <div class="component-section">
+                <h2>Date and Time Picker</h2>
+                <p><strong>Description:</strong> A picker that allows selecting both date and time.</p>
+                <input type="datetime-local" id="dateTimePicker" onchange="selectDateTime()" aria-label="Select a date and time">
+                <div id="dateTimeSuccess" class="message success"></div>
+            </div>
+
+            <div class="component-section">
+                <h2>Month Picker</h2>
+                <p><strong>Description:</strong> A picker for selecting a month and year.</p>
+                <input type="month" id="monthPicker" onchange="selectMonth()" aria-label="Select a month and year">
+                <div id="monthSuccess" class="message success"></div>
+            </div>
+
+            <div class="component-section">
+                <h2>Week Picker</h2>
+                <p><strong>Description:</strong> A picker for selecting a week and year.</p>
+                <input type="week" id="weekPicker" onchange="selectWeek()" aria-label="Select a week and year">
+                <div id="weekSuccess" class="message success"></div>
+            </div>
+
+            <div class="component-section">
+                <h2>Custom Dropdown Date Picker</h2>
+                <p><strong>Description:</strong> A custom date picker using dropdown menus for day, month, and year.</p>
+                <div class="custom-date-picker">
+                    <select id="customDay" aria-label="Select day">
+                        <option value="">Day</option>
+                    </select>
+                    <select id="customMonth" aria-label="Select month">
+                        <option value="">Month</option>
+                        <option value="01">January</option>
+                        <option value="02">February</option>
+                        <option value="03">March</option>
+                        <option value="04">April</option>
+                        <option value="05">May</option>
+                        <option value="06">June</option>
+                        <option value="07">July</option>
+                        <option value="08">August</option>
+                        <option value="09">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
+                    </select>
+                    <select id="customYear" aria-label="Select year">
+                        <option value="">Year</option>
+                    </select>
+                </div>
+                <div id="customDateSuccess" class="message success"></div>
+            </div>
+
+            <div class="component-section">
+                <h2>Text Field Date Entry</h2>
+                <p><strong>Description:</strong> Enter a date using text fields for day, month, and year (e.g., DD MM YYYY).</p>
+                <div class="text-date-picker">
+                    <input type="text" id="textDay" placeholder="DD" aria-label="Enter day" maxlength="2">
+                    <input type="text" id="textMonth" placeholder="MM" aria-label="Enter month" maxlength="2">
+                    <input type="text" id="textYear" placeholder="YYYY" aria-label="Enter year" maxlength="4">
+                </div>
+                <div id="textDateSuccess" class="message success"></div>
+                <div id="textDateError" class="message error" aria-live="polite"></div>
             </div>
         </div>
     </div>
@@ -200,13 +284,161 @@
             }
         }
 
+        function selectDateTime() {
+            const dateTime = document.getElementById('dateTimePicker').value;
+            const success = document.getElementById('dateTimeSuccess');
+            if (dateTime) {
+                success.textContent = `Selected Date and Time: ${dateTime}`;
+                success.style.display = 'block';
+            } else {
+                success.style.display = 'none';
+            }
+        }
+
+        function selectMonth() {
+            const month = document.getElementById('monthPicker').value;
+            const success = document.getElementById('monthSuccess');
+            if (month) {
+                success.textContent = `Selected Month: ${month}`;
+                success.style.display = 'block';
+            } else {
+                success.style.display = 'none';
+            }
+        }
+
+        function selectWeek() {
+            const week = document.getElementById('weekPicker').value;
+            const success = document.getElementById('weekSuccess');
+            if (week) {
+                success.textContent = `Selected Week: ${week}`;
+                success.style.display = 'block';
+            } else {
+                success.style.display = 'none';
+            }
+        }
+
+        function populateCustomDatePicker() {
+            const daySelect = document.getElementById('customDay');
+            const yearSelect = document.getElementById('customYear');
+            
+            // Populate days (1-31)
+            for (let i = 1; i <= 31; i++) {
+                const option = document.createElement('option');
+                option.value = i.toString().padStart(2, '0');
+                option.textContent = i;
+                daySelect.appendChild(option);
+            }
+
+            // Populate years (current year - 50 to current year + 10)
+            const currentYear = new Date().getFullYear();
+            for (let i = currentYear - 50; i <= currentYear + 10; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                yearSelect.appendChild(option);
+            }
+        }
+
+        function selectCustomDate() {
+            const day = document.getElementById('customDay').value;
+            const month = document.getElementById('customMonth').value;
+            const year = document.getElementById('customYear').value;
+            const success = document.getElementById('customDateSuccess');
+
+            if (day && month && year) {
+                const date = `${year}-${month}-${day}`;
+                success.textContent = `Selected Date: ${date}`;
+                success.style.display = 'block';
+            } else {
+                success.style.display = 'none';
+            }
+        }
+
+        function validateAndSelectTextDate() {
+            const day = document.getElementById('textDay').value.trim();
+            const month = document.getElementById('textMonth').value.trim();
+            const year = document.getElementById('textYear').value.trim();
+            const success = document.getElementById('textDateSuccess');
+            const error = document.getElementById('textDateError');
+
+            // Reset messages
+            success.style.display = 'none';
+            error.style.display = 'none';
+
+            // Validate inputs
+            if (!day || !month || !year) {
+                error.textContent = 'Please enter day, month, and year.';
+                error.style.display = 'block';
+                return;
+            }
+
+            // Check if inputs are numeric
+            if (!/^\d+$/.test(day) || !/^\d+$/.test(month) || !/^\d+$/.test(year)) {
+                error.textContent = 'Day, month, and year must be numeric.';
+                error.style.display = 'block';
+                return;
+            }
+
+            // Convert to numbers
+            const dayNum = parseInt(day, 10);
+            const monthNum = parseInt(month, 10);
+            const yearNum = parseInt(year, 10);
+
+            // Validate ranges
+            if (yearNum < 1000 || yearNum > 9999) {
+                error.textContent = 'Year must be a four-digit number (1000-9999).';
+                error.style.display = 'block';
+                return;
+            }
+            if (monthNum < 1 || monthNum > 12) {
+                error.textContent = 'Month must be between 1 and 12.';
+                error.style.display = 'block';
+                return;
+            }
+            if (dayNum < 1 || dayNum > 31) {
+                error.textContent = 'Day must be between 1 and 31.';
+                error.style.display = 'block';
+                return;
+            }
+
+            // Validate date existence (e.g., February 30th is invalid)
+            const date = new Date(yearNum, monthNum - 1, dayNum);
+            if (date.getFullYear() !== yearNum || date.getMonth() + 1 !== monthNum || date.getDate() !== dayNum) {
+                error.textContent = 'Invalid date (e.g., February 30th does not exist).';
+                error.style.display = 'block';
+                return;
+            }
+
+            // Format and display the date
+            const formattedDay = dayNum.toString().padStart(2, '0');
+            const formattedMonth = monthNum.toString().padStart(2, '0');
+            const formattedDate = `${yearNum}-${formattedMonth}-${formattedDay}`;
+            success.textContent = `Selected Date: ${formattedDate}`;
+            success.style.display = 'block';
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const widgetsMenu = document.getElementById('widgets-menu');
             const widgetsToggle = widgetsMenu.previousElementSibling;
             widgetsMenu.style.display = 'block';
             widgetsToggle.classList.add('expanded');
+
+            // Populate custom date picker
+            populateCustomDatePicker();
+
+            // Add event listeners for custom date picker
+            const customInputs = ['customDay', 'customMonth', 'customYear'];
+            customInputs.forEach(id => {
+                document.getElementById(id).addEventListener('change', selectCustomDate);
+            });
+
+            // Add event listeners for text date picker
+            const textInputs = ['textDay', 'textMonth', 'textYear'];
+            textInputs.forEach(id => {
+                document.getElementById(id).addEventListener('input', validateAndSelectTextDate);
+            });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933ec2cf4b8e6fbf',t:'MTc0NTI1ODIxNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'934838824c2353c4',t:'MTc0NTM1NzQwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>

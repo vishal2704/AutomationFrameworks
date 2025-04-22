@@ -55,17 +55,17 @@
         .menu-section > a:hover {
             background: #3498db;
         }
-        .submenu {
+        .side-submenu {
             display: none;
             padding-left: 20px;
         }
-        .submenu a {
+        .side-submenu a {
             display: block;
             padding: 8px 15px;
             color: #cccccc;
             text-decoration: none;
         }
-        .submenu a:hover {
+        .side-submenu a:hover {
             background: #3498db;
             color: #ffffff;
         }
@@ -98,59 +98,86 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         iframe {
+            border: 1px solid #ddd;
+            border-radius: 5px;
             width: 100%;
             height: 200px;
+        }
+        .inner-frame {
+            width: 80%;
+            height: 100px;
+            margin: 10px auto;
+            display: block;
+        }
+        input[type="text"], textarea {
+            padding: 8px;
             border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 80%;
+            margin: 10px auto;
+            display: block;
+        }
+        textarea {
+            height: 60px;
+            resize: vertical;
+        }
+        p {
+            text-align: center;
+            margin: 10px 0;
+        }
+        .text-display {
+            white-space: pre-wrap;
+            color: #555;
         }
     </style>
 </head>
 <body>
     <div class="side-panel">
         <div class="components-link">
-            <a href="../components.html">Components</a>
+            <a href="../index.html" aria-label="Go to Components page">Components</a>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('elements-menu')">Elements</a>
-            <div id="elements-menu" class="submenu">
-                <a href="../Elements/checkboxes.html">Checkboxes</a>
-                <a href="../Elements/links.html">Links</a>
-                <a href="../Elements/radio-buttons.html">Radio Buttons</a>
-                <a href="../Elements/shadow-dom.html">Shadow DOM</a>
-                <a href="../Elements/buttons.html">Buttons</a>
-                <a href="../Elements/broken-links-images.html">Broken Links & Images</a>
+            <div id="elements-menu" class="side-submenu">
+                <a href="../Elements/checkboxes.html" aria-label="Go to Checkboxes page">Checkboxes</a>
+                <a href="../Elements/links.html" aria-label="Go to Links page">Links</a>
+                <a href="../Elements/radio-buttons.html" aria-label="Go to Radio Buttons page">Radio Buttons</a>
+                <a href="../Elements/shadow-dom.html" aria-label="Go to Shadow DOM page">Shadow DOM</a>
+                <a href="../Elements/buttons.html" aria-label="Go to Buttons page">Buttons</a>
+                <a href="../Elements/broken-links-images.html" aria-label="Go to Broken Links and Images page">Broken Links & Images</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('forms-menu')">Forms</a>
-            <div id="forms-menu" class="submenu">
-                <a href="../Forms/forms-page.html">Forms Page</a>
+            <div id="forms-menu" class="side-submenu">
+                <a href="../Forms/forms-page.html" aria-label="Go to Forms Page">Forms Page</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('alerts-frames-windows-menu')">Alerts, Frames & Windows</a>
-            <div id="alerts-frames-windows-menu" class="submenu">
-                <a href="windows-tabs.html">Windows and Tabs</a>
-                <a href="nested-frames.html">Nested Frames</a>
+            <div id="alerts-frames-windows-menu" class="side-submenu">
+                <a href="windows-tabs.html" aria-label="Go to Windows and Tabs page">Windows and Tabs</a>
+                <a href="nested-frames.html" aria-label="Go to Nested Frames page">Nested Frames</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('widgets-menu')">Widget</a>
-            <div id="widgets-menu" class="submenu">
-                <a href="../Widget/accordion.html">Accordion</a>
-                <a href="../Widget/date-picker.html">Date Picker</a>
-                <a href="../Widget/slider.html">Slider</a>
-                <a href="../Widget/tabs.html">Tabs</a>
-                <a href="../Widget/tooltip.html">Tooltip</a>
-                <a href="../Widget/progress-bar.html">Progress Bar</a>
+            <div id="widgets-menu" class="side-submenu">
+                <a href="../Widget/accordion.html" aria-label="Go to Accordion page">Accordion</a>
+                <a href="../Widget/date-picker.html" aria-label="Go to Date Picker page">Date Picker</a>
+                <a href="../Widget/slider.html" aria-label="Go to Slider page">Slider</a>
+                <a href="../Widget/tabs.html" aria-label="Go to Tabs page">Tabs</a>
+                <a href="../Widget/tooltip.html" aria-label="Go to Tooltip page">Tooltip</a>
+                <a href="../Widget/progress-bar.html" aria-label="Go to Progress Bar page">Progress Bar</a>
             </div>
         </div>
         <div class="menu-section">
             <a class="expandable" onclick="toggleMenu('interactables-menu')">Interactable</a>
-            <div id="interactables-menu" class="submenu">
-                <a href="../Interactable/menu.html">Menu</a>
-                <a href="../Interactable/drag-and-drop.html">Drag and Drop</a>
-                <a href="../Interactable/selectable-list.html">Selectable List</a>
-                <a href="../Interactable/simple-draggable-list.html">Simple Draggable List</a>
+            <div id="interactables-menu" class="side-submenu">
+                <a href="../Interactable/menu.html" aria-label="Go to Menu page">Menu</a>
+                <a href="../Interactable/drag-and-drop.html" aria-label="Go to Drag and Drop page">Drag and Drop</a>
+                <a href="../Interactable/selectable-list.html" aria-label="Go to Selectable List page">Selectable List</a>
+                <a href="../Interactable/simple-draggable-list.html" aria-label="Go to Simple Draggable List page">Simple Draggable List</a>
             </div>
         </div>
     </div>
@@ -160,9 +187,67 @@
             <h1>Testing Playground - Nested Frames</h1>
 
             <div class="component-section">
-                <h2>Nested Frames Test</h2>
-                <p><strong>Description:</strong> Tests nested iframes.</p>
-                <iframe srcdoc="<h3>Outer Frame</h3><iframe srcdoc='<h4>Inner Frame</h4><p>This is inside a nested frame.</p>'></iframe>"></iframe>
+                <h2>Basic Nested Frames</h2>
+                <p><strong>Description:</strong> A basic example of nested frames with static content.</p>
+                <iframe srcdoc='
+                    <html>
+                    <head>
+                        <style>
+                            body { font-family: Arial, sans-serif; margin: 0; padding: 10px; text-align: center; }
+                            iframe { border: 1px solid #ddd; border-radius: 5px; }
+                        </style>
+                    </head>
+                    <body>
+                        <h3>Outer Frame</h3>
+                        <iframe class="inner-frame" srcdoc="
+                            <html>
+                            <head>
+                                <style>
+                                    body { font-family: Arial, sans-serif; margin: 0; padding: 10px; text-align: center; }
+                                    p { color: #333; }
+                                </style>
+                            </head>
+                            <body>
+                                <p>Inner Frame</p>
+                            </body>
+                            </html>
+                        " title="Inner Frame"></iframe>
+                    </body>
+                    </html>
+                ' title="Outer Frame" aria-label="Outer frame with static inner frame"></iframe>
+            </div>
+
+            <div class="component-section">
+                <h2>Nested Frames with Text Input</h2>
+                <p><strong>Description:</strong> Nested frames with a textarea in the outer frame to add multi-line text, displayed in the inner frame and parent page.</p>
+                <iframe id="outerFrame" srcdoc='
+                    <html>
+                    <head>
+                        <style>
+                            body { font-family: Arial, sans-serif; margin: 0; padding: 10px; text-align: center; }
+                            iframe { border: 1px solid #ddd; border-radius: 5px; }
+                            textarea { padding: 8px; border: 1px solid #ddd; border-radius: 4px; width: 80%; height: 60px; margin: 10px auto; display: block; resize: vertical; }
+                            p { margin: 10px 0; white-space: pre-wrap; color: #555; }
+                        </style>
+                    </head>
+                    <body>
+                        <h3>Outer Frame for Text Input</h3>
+                        <textarea id="textInput" placeholder="Enter multi-line text here" aria-label="Enter multi-line text in outer frame"></textarea>
+                        <iframe id="innerFrame" class="inner-frame" src="data:text/html;charset=utf-8;base64,PGh0bWw+CjxoZWFkPgo8c3R5bGU+CmJvZHkgeyBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IG1hcmdpbjogMDsgcGFkZGluZzogMTBweDsgdGV4dC1hbGlnbjogY2VudGVyOyB9CnAgeyBjb2xvcjogIzMzMzsgbWFyZ2luOiAxMHB4IDA7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsgfQo8L3N0eWxlPgo8L2hlYWQ+Cjxib2R5Pgo8cCBpZD0ndGV4dERpc3BsYXknPlRleHQgZnJvbSBvdXRlciBmcmFtZSB3aWxsIGFwcGVhciBoZXJlPC9wPgo8c2NyaXB0PgogICAgd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ21lc3NhZ2UnLCBmdW5jdGlvbiAoZXZlbnQpIHsKICAgICAgICBjb25zb2xlLmxvZygnSW5uZXIgZnJhbWUgcmVjZWl2ZWQgbWVzc2FnZTonLCBldmVudC5kYXRhKTsKICAgICAgICBjb25zdCB0ZXh0ID0gZXZlbnQuZGF0YS50ZXh0IHx8ICdUZXh0IGZyb20gb3V0ZXIgZnJhbWUgd2lsbCBhcHBlYXIgaGVyZSc7CiAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ3RleHREaXNwbGF5JykudGV4dENvbnRlbnQgPSB0ZXh0OwogICAgfSk7Cjwvc2NyaXB0Pgo8L2JvZHk+CjwvaHRtbD4K" title="Inner Frame with Text Display"></iframe>
+                        <script>
+                            const textarea = document.getElementById(\'textInput\');
+                            const innerFrame = document.getElementById(\'innerFrame\');
+                            textarea.addEventListener(\'input\', function() {
+                                const text = this.value;
+                                console.log(\'Outer frame sending message:\', text);
+                                innerFrame.contentWindow.postMessage({ text: text }, \'*\');
+                                window.parent.postMessage({ text: text }, \'*\');
+                            });
+                        </script>
+                    </body>
+                    </html>
+                ' title="Outer Frame with Text Input" aria-label="Outer frame with textarea for multi-line text input"></iframe>
+                <p class="text-display" id="parentDisplay">Text from outer frame will appear here</p>
             </div>
         </div>
     </div>
@@ -181,12 +266,18 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            const alertsFramesWindowsMenu = document.getElementById('alerts-frames-windows-menu');
-            const alertsFramesWindowsToggle = alertsFramesWindowsMenu.previousElementSibling;
-            alertsFramesWindowsMenu.style.display = 'block';
-            alertsFramesWindowsToggle.classList.add('expanded');
+            const alertsMenu = document.getElementById('alerts-frames-windows-menu');
+            const alertsToggle = alertsMenu.previousElementSibling;
+            alertsMenu.style.display = 'block';
+            alertsToggle.classList.add('expanded');
+
+            window.addEventListener('message', function(event) {
+                console.log('Parent page received message:', event.data);
+                const text = event.data.text || 'Text from outer frame will appear here';
+                document.getElementById('parentDisplay').textContent = text;
+            });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933ea3353fbeb03b',t:'MTc0NTI1NjkyMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'934838824c2353c4',t:'MTc0NTM1NzQwOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
