@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,943 +25,1004 @@
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
     <style>
-      /* Style the slider container */
-      .switch {
-        position: relative;
-        display: inline-block;
-        width: 36px;
-        height: 20px;
-        vertical-align: middle;
-      }
-
-      /* Hide the default HTML checkbox */
-      .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-
-      /* Style the slider */
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        transition: 0.4s;
-        border-radius: 20px;
-      }
-
-      /* Style the slider before (circle inside) */
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 16px;
-        width: 16px;
+        /* Style the slider container */
+          .switch {
+            position: relative;
+            display: inline-block;
+            width: 36px;
+            height: 20px;
+            vertical-align: middle;
+          }
+    
+          /* Hide the default HTML checkbox */
+          .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+          }
+    
+          /* Style the slider */
+          .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 20px;
+          }
+    
+          /* Style the slider before (circle inside) */
+          .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: 0.4s;
+          }
+    
+          /* Change slider color when checked */
+          input:checked + .slider {
+            background-color: #00b4d9;
+          }
+    
+          /* Move the circle to the right when checked */
+          input:checked + .slider:before {
+            transform: translateX(16px);
+          }
+    
+          /* Text styles */
+          #status {
+            margin-left: 10px;
+            font-size: 16px;
+            vertical-align: middle;
+          }
+    
+          /* Ensure the pro-detail (which contains the switch and status) aligns properly */
+          .pro-detail {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+          }
+    
+          /* Adjust the pro-title to ensure consistent alignment */
+          .pro-title {
+            display: inline-block;
+            width: 100px;
+            vertical-align: middle;
+          }
+    
+          /* Adjust the list item to ensure proper alignment */
+          .admin-profile li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+          }
+    
+          /* Custom styles for portfolio panels */
+          .portfolio-panel {
+            height: 100%;
+            min-height: 400px; /* Consistent height for all cards */
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            display: flex; /* Ensure the card stretches to fit content */
+            flex-direction: column;
+          }
+          .portfolio-panel:hover {
+            transform: translateY(-3px);
+          }
+          .portfolio-panel img {
+            border-radius: 8px 8px 0 0;
+            height: 120px;
+            object-fit: cover;
+            width: 100%; /* Ensure image stretches to fit the card width */
+          }
+          .portfolio-panel .card-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; /* Allow card body to grow and fill space */
+          }
+          .portfolio-panel h4 {
+            font-size: 1.2em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            line-height: 1.3; /* Prevent text wrapping issues */
+          }
+          .portfolio-panel p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 8px;
+            line-height: 1.5; /* Improve readability */
+            flex-grow: 1; /* Ensure paragraphs take up available space */
+          }
+          .portfolio-panel .btn {
+            font-size: 0.9em;
+            padding: 5px 10px;
+            margin-top: auto; /* Push button to the bottom */
+            align-self: center;
+          }
+    
+          /* Ensure portfolio cards align properly in a row */
+          #portfolios .row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch; /* Stretch cards to the same height */
+          }
+    
+          /* Responsive adjustment for portfolio panels */
+          @media (max-width: 576px) {
+            .portfolio-panel {
+              min-height: 380px;
+            }
+            .portfolio-panel img {
+              height: 100px; /* Slightly smaller images on mobile */
+            }
+            .portfolio-panel h4 {
+              font-size: 1.1em;
+            }
+            .portfolio-panel p {
+              font-size: 0.85em;
+            }
+          }
+    
+          /* Custom styles for contact form */
+          .contact-form .form-group {
+            margin-bottom: 15px;
+          }
+          .contact-form label {
+            font-weight: 500;
+            color: #2c3e50;
+          }
+          .contact-form .form-control {
+            border-radius: 5px;
+            font-size: 0.9em;
+          }
+          .contact-form .btn-common {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+          }
+    
+          /* Styles for new form elements (dropdown, radio buttons, checkbox) */
+          .contact-form select.form-control {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="%232c3e50" d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+            background-size: 12px;
+            padding-right: 30px;
+          }
+          .contact-form .radio-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+          }
+          .contact-form .radio-group label {
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+          }
+          .contact-form .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+          }
+          .contact-form .checkbox-group label {
+            margin-bottom: 0;
+            font-size: 0.9em;
+            color: #2c3e50;
+          }
+    
+          /* Responsive adjustments for new form elements */
+          @media (max-width: 576px) {
+            .contact-form .radio-group {
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 10px;
+            }
+          }
+    
+          /* Enhanced styles for contact information */
+          .footer-right-area {
+            min-height: 200px;
+          }
+          .footer-right-contact .single-contact {
+            display: flex !important;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 5px 0;
+            flex-wrap: nowrap;
+          }
+          .footer-right-area .footer-right-contact .contact-icon {
+            margin-right: 40px;
+            color: #00b4d9 !important;
+            background: none !important;
+            padding: 0 !important;
+            width: 20px;
+            height: 20px;
+            position: static !important;
+            text-align: center;
+          }
+          .footer-right-contact .contact-icon i {
+            font-size: 1em;
+            line-height: 20px;
+          }
+          .footer-right-contact .single-contact p {
+            margin: 0;
+            font-size: 0.95em;
+            color: #2c3e50;
+            min-width: 0;
+          }
+          .footer-right-contact .single-contact a {
+            color: #2c3e50;
+            text-decoration: none;
+          }
+          .footer-right-contact .single-contact a:hover {
+            color: #00b4d9;
+          }
+    
+          /* Styles for the map under Contact Information */
+          .contact-map {
+            margin-top: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+          }
+          .contact-map iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+          }
+    
+          /* Mobile adjustments for contact information and map */
+          @media (max-width: 576px) {
+            .footer-right-area .footer-right-contact .contact-icon {
+              margin-right: 25px;
+            }
+            .footer-right-contact .contact-icon i {
+              font-size: 0.9em;
+              line-height: 20px;
+            }
+            .footer-right-contact .single-contact p {
+              font-size: 0.9em;
+            }
+            .contact-map iframe {
+              height: 250px;
+            }
+          }
+    
+          /* Custom styles for GitHub chart */
+          .github-chart-container {
+            margin-top: 40px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: center;
+          }
+          .github-chart-title {
+            font-size: 1.8em;
+            color: rgb(255, 255, 255);
+            margin-bottom: 20px;
+          }
+          .github-chart-img {
+            max-width: 100%;
+            height: auto;
+          }
+    
+          /* Custom styles for Testimonials section */
+          .testimonials-section {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+          }
+          .testimonials-section .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+          }
+          .testimonial-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+          .testimonial-card:hover {
+            transform: translateY(-5px);
+          }
+          .testimonial-card p {
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            flex-grow: 1;
+          }
+          .testimonial-card .customer-info {
+            font-size: 0.9em;
+            color: #2c3e50;
+          }
+          .testimonial-card .customer-info span {
+            display: block;
+            color: #00b4d9;
+            font-weight: 500;
+          }
+    
+          /* Responsive adjustments for Testimonials */
+          @media (max-width: 576px) {
+            .testimonial-card {
+              margin-bottom: 20px;
+            }
+            .testimonial-card p {
+              font-size: 0.9em;
+            }
+            .testimonial-card .customer-info {
+              font-size: 0.85em;
+            }
+          }
+    
+          /* Ensure all panels in "What I Do" section are the same height */
+          #services .row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+          }
+    
+          /* Stretch services-item to fill the column height */
+          .services-item {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 300px;
+          }
+    
+          /* Make the content area stretch to fill remaining space */
+          .services-item .services-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+          }
+    
+          /* Ensure the description takes up available space */
+          .services-item .services-content p {
+            flex-grow: 1;
+            margin-bottom: 0;
+          }
+    
+          /* Responsive adjustments for "What I Do" panels */
+          @media (max-width: 576px) {
+            .services-item {
+              min-height: 250px;
+            }
+          }
+    
+          .testimonial-carousel {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 20px;
+            -webkit-overflow-scrolling: touch;
+          }
+          .testimonial-carousel::-webkit-scrollbar {
+            display: none;
+          }
+          .testimonial-card {
+            min-width: 300px;
+            flex: 0 0 auto;
+            scroll-snap-align: start;
+          }
+    	  
+    	   .back-to-top, .go-to-bottom {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        background: #00b4d9;
+        color: #fff;
+        line-height: 40px;
+        text-align: center;
         border-radius: 50%;
-        left: 2px;
-        bottom: 2px;
-        background-color: white;
-        transition: 0.4s;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        z-index: 999;
+        transition: all 0.3s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
       }
-
-      /* Change slider color when checked */
-      input:checked + .slider {
-        background-color: #00b4d9;
+    
+      .back-to-top {
+        right: 20px;
+        bottom: 70px; /* Position above go-to-bottom button */
       }
-
-      /* Move the circle to the right when checked */
-      input:checked + .slider:before {
-        transform: translateX(16px);
+    
+      .go-to-bottom {
+        right: 20px;
+        bottom: 20px;
       }
-
-      /* Text styles */
-      #status {
-        margin-left: 10px;
-        font-size: 16px;
-        vertical-align: middle;
+    
+      .back-to-top:hover, .go-to-bottom:hover {
+        background: #0097b6;
+        color: #fff;
+        transform: scale(1.1);
       }
-
-      /* Ensure the pro-detail (which contains the switch and status) aligns properly */
-      .pro-detail {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
+    
+      .back-to-top.active, .go-to-bottom.active {
+        opacity: 1;
+        visibility: visible;
       }
-
-      /* Adjust the pro-title to ensure consistent alignment */
-      .pro-title {
-        display: inline-block;
-        width: 100px;
-        vertical-align: middle;
-      }
-
-      /* Adjust the list item to ensure proper alignment */
-      .admin-profile li {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-      }
-
-      /* Custom styles for portfolio panels */
-      .portfolio-panel {
-        height: 100%;
-        min-height: 400px; /* Consistent height for all cards */
-        border: none;
-        border-radius: 8px;
-        box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-        transition: transform 0.2s;
-        display: flex; /* Ensure the card stretches to fit content */
-        flex-direction: column;
-      }
-      .portfolio-panel:hover {
-        transform: translateY(-3px);
-      }
-      .portfolio-panel img {
-        border-radius: 8px 8px 0 0;
-        height: 120px;
-        object-fit: cover;
-        width: 100%; /* Ensure image stretches to fit the card width */
-      }
-      .portfolio-panel .card-body {
-        padding: 15px;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1; /* Allow card body to grow and fill space */
-      }
-      .portfolio-panel h4 {
-        font-size: 1.2em;
-        color: #2c3e50;
-        margin-bottom: 10px;
-        line-height: 1.3; /* Prevent text wrapping issues */
-      }
-      .portfolio-panel p {
-        font-size: 0.9em;
-        color: #555;
-        margin-bottom: 8px;
-        line-height: 1.5; /* Improve readability */
-        flex-grow: 1; /* Ensure paragraphs take up available space */
-      }
-      .portfolio-panel .btn {
-        font-size: 0.9em;
-        padding: 5px 10px;
-        margin-top: auto; /* Push button to the bottom */
-        align-self: center;
-      }
-
-      /* Ensure portfolio cards align properly in a row */
-      #portfolios .row {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: stretch; /* Stretch cards to the same height */
-      }
-
-      /* Responsive adjustment for portfolio panels */
-      @media (max-width: 576px) {
-        .portfolio-panel {
-          min-height: 380px;
-        }
-        .portfolio-panel img {
-          height: 100px; /* Slightly smaller images on mobile */
-        }
-        .portfolio-panel h4 {
-          font-size: 1.1em;
-        }
-        .portfolio-panel p {
-          font-size: 0.85em;
-        }
-      }
-
-      /* Custom styles for contact form */
-      .contact-form .form-group {
-        margin-bottom: 15px;
-      }
-      .contact-form label {
-        font-weight: 500;
-        color: #2c3e50;
-      }
-      .contact-form .form-control {
-        border-radius: 5px;
-        font-size: 0.9em;
-      }
-      .contact-form .btn-common {
-        width: 100%;
-        padding: 10px;
-        font-size: 1em;
-      }
-
-      /* Styles for new form elements (dropdown, radio buttons, checkbox) */
-      .contact-form select.form-control {
-        appearance: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"><path fill="%232c3e50" d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
-        background-size: 12px;
-        padding-right: 30px;
-      }
-      .contact-form .radio-group {
-        display: flex;
-        gap: 15px;
-        align-items: center;
-      }
-      .contact-form .radio-group label {
-        margin-bottom: 0;
-        display: flex;
-        align-items: center;
-        gap: 5px;
-      }
-      .contact-form .checkbox-group {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .contact-form .checkbox-group label {
-        margin-bottom: 0;
-        font-size: 0.9em;
-        color: #2c3e50;
-      }
-
-      /* Responsive adjustments for new form elements */
-      @media (max-width: 576px) {
-        .contact-form .radio-group {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 10px;
-        }
-      }
-
-      /* Enhanced styles for contact information */
-      .footer-right-area {
-        min-height: 200px;
-      }
-      .footer-right-contact .single-contact {
-        display: flex !important;
-        align-items: center;
-        margin-bottom: 15px;
-        padding: 5px 0;
-        flex-wrap: nowrap;
-      }
-      .footer-right-area .footer-right-contact .contact-icon {
-        margin-right: 40px;
-        color: #00b4d9 !important;
-        background: none !important;
-        padding: 0 !important;
-        width: 20px;
-        height: 20px;
-        position: static !important;
-        text-align: center;
-      }
-      .footer-right-contact .contact-icon i {
-        font-size: 1em;
-        line-height: 20px;
-      }
-      .footer-right-contact .single-contact p {
-        margin: 0;
-        font-size: 0.95em;
-        color: #2c3e50;
-        min-width: 0;
-      }
-      .footer-right-contact .single-contact a {
-        color: #2c3e50;
-        text-decoration: none;
-      }
-      .footer-right-contact .single-contact a:hover {
-        color: #00b4d9;
-      }
-
-      /* Styles for the map under Contact Information */
-      .contact-map {
-        margin-top: 20px;
-        border: 1px solid #e0e0e0;
-        border-radius: 5px;
-        overflow: hidden;
-      }
-      .contact-map iframe {
-        width: 100%;
-        height: 300px;
-        border: none;
-      }
-
-      /* Mobile adjustments for contact information and map */
-      @media (max-width: 576px) {
-        .footer-right-area .footer-right-contact .contact-icon {
-          margin-right: 25px;
-        }
-        .footer-right-contact .contact-icon i {
-          font-size: 0.9em;
-          line-height: 20px;
-        }
-        .footer-right-contact .single-contact p {
-          font-size: 0.9em;
-        }
-        .contact-map iframe {
-          height: 250px;
-        }
-      }
-
-      /* Custom styles for GitHub chart */
-      .github-chart-container {
-        margin-top: 40px;
-        padding: 20px;
-        border: 1px solid #e0e0e0;
-        border-radius: 8px;
-        text-align: center;
-      }
-      .github-chart-title {
-        font-size: 1.8em;
-        color: rgb(255, 255, 255);
-        margin-bottom: 20px;
-      }
-      .github-chart-img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      /* Custom styles for Testimonials section */
-      .testimonials-section {
-        background-color: #f8f9fa;
-        padding: 60px 0;
-      }
-      .testimonials-section .section-title {
-        text-align: center;
-        margin-bottom: 40px;
-        color: #2c3e50;
-      }
-      .testimonial-card {
-        background-color: #fff;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      .testimonial-card:hover {
-        transform: translateY(-5px);
-      }
-      .testimonial-card p {
-        font-size: 0.95em;
-        color: #555;
-        line-height: 1.6;
-        margin-bottom: 15px;
-        flex-grow: 1;
-      }
-      .testimonial-card .customer-info {
-        font-size: 0.9em;
-        color: #2c3e50;
-      }
-      .testimonial-card .customer-info span {
-        display: block;
-        color: #00b4d9;
-        font-weight: 500;
-      }
-
-      /* Responsive adjustments for Testimonials */
-      @media (max-width: 576px) {
-        .testimonial-card {
-          margin-bottom: 20px;
-        }
-        .testimonial-card p {
-          font-size: 0.9em;
-        }
-        .testimonial-card .customer-info {
-          font-size: 0.85em;
-        }
-      }
-
-      /* Ensure all panels in "What I Do" section are the same height */
-      #services .row {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: stretch;
-      }
-
-      /* Stretch services-item to fill the column height */
-      .services-item {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        min-height: 300px;
-      }
-
-      /* Make the content area stretch to fill remaining space */
-      .services-item .services-content {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      /* Ensure the description takes up available space */
-      .services-item .services-content p {
-        flex-grow: 1;
-        margin-bottom: 0;
-      }
-
-      /* Responsive adjustments for "What I Do" panels */
-      @media (max-width: 576px) {
-        .services-item {
-          min-height: 250px;
-        }
-      }
-
-      .testimonial-carousel {
-        display: flex;
-        overflow-x: auto;
-        gap: 20px;
-        scroll-snap-type: x mandatory;
-        padding-bottom: 20px;
-        -webkit-overflow-scrolling: touch;
-      }
-      .testimonial-carousel::-webkit-scrollbar {
-        display: none;
-      }
-      .testimonial-card {
-        min-width: 300px;
-        flex: 0 0 auto;
-        scroll-snap-align: start;
+    
+      /* Hide go-to-bottom when at bottom of page */
+      .bottom-reached .go-to-bottom {
+        opacity: 0;
+        visibility: hidden;
       }
     </style>
-  </head>
-  <body>
-    <!-- Header Area wrapper Starts -->
-    <header id="header-wrap">
-      <!-- Navbar Start -->
-      <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
+</head>
+
+<body>
+<!-- Header Area wrapper Starts -->
+<header id="header-wrap">
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
         <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-              <span class="icon-menu"></span>
-              <span class="icon-menu"></span>
-              <span class="icon-menu"></span>
-            </button>
-            <a href="index.html" class="navbar-brand"><img src="assets/img/logo.jpg" alt="Vishal Deshpande Logo"></a>
-          </div>
-          <div class="collapse navbar-collapse" id="main-navbar">
-            <ul class="onepage-nev navbar-nav mr-auto w-100 justify-content-end clearfix">
-              <li class="nav-item active">
-                <a class="nav-link" href="#hero-area">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#services">Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#resume">Resume</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#portfolios">Work</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="blogs.html">Blogs</a>
-              </li>
-            </ul>
-          </div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    <span class="icon-menu"></span>
+                    <span class="icon-menu"></span>
+                    <span class="icon-menu"></span>
+                </button>
+                <a href="index.html" class="navbar-brand"><img src="assets/img/logo.jpg" alt="Vishal Deshpande Logo"></a>
+            </div>
+            <div class="collapse navbar-collapse" id="main-navbar">
+                <ul class="onepage-nev navbar-nav mr-auto w-100 justify-content-end clearfix">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#hero-area">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#resume">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolios">Work</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blogs.html">Blogs</a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <!-- Mobile Menu Start -->
         <ul class="onepage-nev mobile-menu">
-          <li>
-            <a href="#hero-area">Home</a>
-          </li>
-          <li>
-            <a href="#about">About</a>
-          </li>
-          <li>
-            <a href="#services">Services</a>
-          </li>
-          <li>
-            <a href="#resume">Resume</a>
-          </li>
-          <li>
-            <a href="#portfolios">Work</a>
-          </li>
-          <li>
-            <a href="#contact">Contact</a>
-          </li>
-          <li>
-            <a href="blogs.html">Blogs</a>
-          </li>
+            <li>
+                <a href="#hero-area">Home</a>
+            </li>
+            <li>
+                <a href="#about">About</a>
+            </li>
+            <li>
+                <a href="#services">Services</a>
+            </li>
+            <li>
+                <a href="#resume">Resume</a>
+            </li>
+            <li>
+                <a href="#portfolios">Work</a>
+            </li>
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+            <li>
+                <a href="blogs.html">Blogs</a>
+            </li>
         </ul>
         <!-- Mobile Menu End -->
-      </nav>
-      <!-- Navbar End -->
+    </nav>
+    <!-- Navbar End -->
 
-      <!-- Hero Area Start -->
-      <div id="hero-area" class="hero-area-bg">
+    <!-- Hero Area Start -->
+    <div id="hero-area" class="hero-area-bg">
         <div class="overlay"></div>
         <div class="container">
-          <div class="row">
-            <div class="col-md-12 col-sm-12 text-center">
-              <div class="contents">
-                <h5 class="script-font wow fadeInUp" data-wow-delay="0.2s">Hi This is</h5>
-                <h2 class="head-title wow fadeInUp" data-wow-delay="0.4s">Vishal Deshpande</h2>
-                <p class="script-font wow fadeInUp" data-wow-delay="0.6s">QA Automation Lead | Software Quality Engineer</p>
-                <ul class="social-icon wow fadeInUp" data-wow-delay="0.8s">
-                  <li>
-                    <a class="linkedin" href="https://www.linkedin.com/in/vishal-d-78362b22/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="icon-social-linkedin"></i></a>
-                  </li>
-				  <li>
-                    <a class="Facebook" href="https://www.linkedin.com/in/vishal-d-78362b22/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="icon-social-linkedin"></i></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Hero Area End -->
-    </header>
-    <!-- Header Area wrapper End -->
+            <div class="row">
+                <div class="col-md-12 col-sm-12 text-center">
+                    <div class="contents">
+                        <h5 class="script-font wow fadeInUp" data-wow-delay="0.2s">Hi This is</h5>
+                        <h2 class="head-title wow fadeInUp" data-wow-delay="0.4s">Vishal Deshpande</h2>
+                        <p class="script-font wow fadeInUp" data-wow-delay="0.6s">QA Automation Lead | Software Quality Engineer</p>
+                        <ul class="social-icon wow fadeInUp" data-wow-delay="0.8s">
+                            <li>
+                                <a class="linkedin" href="https://www.linkedin.com/in/vishal-d-78362b22/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="icon-social-linkedin"></i></a>
+                            </li>
+                            <li>
+                                <a class="facebook" href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile"><i class="icon-social-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a class="twitter" href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile"><i class="icon-social-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a class="instagram" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile"><i class="icon-social-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a class="github" href="https://github.com/vishal2704" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="icon-social-github"></i></a>
+                            </li>
 
-    <!-- About Section Start -->
-    <section id="about" class="section-padding">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
-              <img class="img-fluid" src="assets/img/about/about-1.png" alt="Vishal Deshpande Profile Image">
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div class="profile-wrapper wow fadeInRight" data-wow-delay="0.3s">
-              <h3>Hi Guys!</h3>
-              <div class="about-profile">
-                <ul class="admin-profile">
-                  <li><span class="pro-title">Name</span> <span class="pro-detail">Vishal Deshpande</span></li>
-                  <li><span class="pro-title">Experience</span> <span class="pro-detail">15 Years</span></li>
-                  <li><span class="pro-title">Country</span> <span class="pro-detail">UK</span></li>
-                  <li><span class="pro-title">Location</span> <span class="pro-detail">Harrow, UK</span></li>
-                  <li><span class="pro-title">e-mail</span> <span class="pro-detail"><a href="mailto:vishal.deshpande@example.com" aria-label="Email Vishal Deshpande">vishal.deshpande@example.com</a></span></li>
-                  <li><span class="pro-title">Phone</span> <span class="pro-detail"><a href="tel:+447748857988" aria-label="Call Vishal Deshpande">+44 07748 857988</a></span></li>
-                  <li>
-                    <span class="pro-title">Freelance</span>
-                    <span class="pro-detail">
+        </div>
+    </div>
+    <!-- Hero Area End -->
+</header>
+<!-- Header Area wrapper End -->
+
+<!-- About Section Start -->
+<section id="about" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
+                    <img class="img-fluid" src="assets/img/about/about-1.png" alt="Vishal Deshpande Profile Image">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="profile-wrapper wow fadeInRight" data-wow-delay="0.3s">
+                    <h3>Hi Guys!</h3>
+                    <div class="about-profile">
+                        <ul class="admin-profile">
+                            <li><span class="pro-title">Name</span> <span class="pro-detail">Vishal Deshpande</span></li>
+                            <li><span class="pro-title">Experience</span> <span class="pro-detail">15 Years</span></li>
+                            <li><span class="pro-title">Country</span> <span class="pro-detail">UK</span></li>
+                            <li><span class="pro-title">Location</span> <span class="pro-detail">Harrow, UK</span></li>
+                            <li><span class="pro-title">e-mail</span> <span class="pro-detail"><a href="mailto:vishal.deshpande@example.com" aria-label="Email Vishal Deshpande">vishal.deshpande@example.com</a></span></li>
+                            <li><span class="pro-title">Phone</span> <span class="pro-detail"><a href="tel:+447748857988" aria-label="Call Vishal Deshpande">+44 07748 857988</a></span></li>
+                            <li>
+                                <span class="pro-title">Freelance</span>
+                                <span class="pro-detail">
                       <label class="switch">
                         <input type="checkbox" id="toggleCheckbox" onchange="toggleStatus()">
                         <span class="slider"></span>
-                      </label>
-                      <span id="status">Available</span>
-                      <span id="unavailable-dates" style="margin-left: 10px; font-size: 14px; color: #888;"></span>
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <a href="assets/pdf/Vishal_Deshpande_Resume.pdf" class="btn btn-common" download aria-label="Download Vishal Deshpande's Resume"><i class="icon-paper-clip"></i> Download Resume</a>
+                                    </label>
+                                    <span id="status">Available</span>
+                                    <span id="unavailable-dates" style="margin-left: 10px; font-size: 14px; color: #888;"></span>
+                                    </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="assets/pdf/Vishal_Deshpande_Resume.pdf" class="btn btn-common" download aria-label="Download Vishal Deshpande's Resume"><i class="icon-paper-clip"></i> Download Resume</a>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <!-- About Section End -->
-
-    <!-- Services Section Start -->
-    <section id="services" class="services section-padding">
-      <h2 class="section-title wow flipInX" data-wow-delay="0.4s">What I Do</h2>
-      <div class="container">
-        <div class="row">
-          <!-- Services item -->
-          <div class="col-md-6 col-lg-3 col-xs-12">
-            <div class="services-item wow fadeInDown" data-wow-delay="0.3s">
-              <div class="icon">
-                <i class="fas fa-mobile-alt"></i>
-              </div>
-              <div class="services-content">
-                <h3><a href="#">Mobile Test Automation</a></h3>
-                <p>Lead mobile app testing using tools like Appium, ensuring quality for iOS and Android platforms with 90%+ test coverage.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Services item -->
-          <div class="col-md-6 col-lg-3 col-xs-12">
-            <div class="services-item wow fadeInDown" data-wow-delay="0.6s">
-              <div class="icon">
-                <i class="icon-wrench"></i>
-              </div>
-              <div class="services-content">
-                <h3><a href="#">Test Automation Frameworks</a></h3>
-                <p>Design scalable frameworks for mobile and web apps, integrating tools like Selenium and Appium for efficient testing.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Services item -->
-          <div class="col-md-6 col-lg-3 col-xs-12">
-            <div class="services-item wow fadeInDown" data-wow-delay="0.9s">
-              <div class="icon">
-                <i class="icon-rocket"></i>
-              </div>
-              <div class="services-content">
-                <h3><a href="#">CI/CD Integration for Mobile</a></h3>
-                <p>Implement automated mobile testing in CI/CD pipelines using Jenkins and Azure DevOps, speeding up release cycles by 40%.</p>
-              </div>
-            </div>
-          </div>
-          <!-- Services item -->
-          <div class="col-md-6 col-lg-3 col-xs-12">
-            <div class="services-item wow fadeInDown" data-wow-delay="1.2s">
-              <div class="icon">
-                <i class="icon-people"></i>
-              </div>
-              <div class="services-content">
-                <h3><a href="#">Team Leadership & Strategy</a></h3>
-                <p>Guide QA teams to define mobile testing strategies, mentoring engineers and ensuring quality across projects.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Services Section End -->
-
-    <!-- Resume Section Start -->
-    <div id="resume" class="section-padding">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <div class="education wow fadeInRight" data-wow-delay="0.3s">
-              <ul class="timeline">
-                <li>
-                  <i class="icon-graduation"></i>
-                  <h2 class="timelin-title">Certifications</h2>
-                </li>
-                <li>
-                  <div class="content-text">
-                    <h3 class="line-title">ISTQB Certified Tester Foundation Level</h3>
-                    <span>2015</span>
-                    <p class="line-text">The ISTQB Certified Tester Foundation Level 4.0 (CTFL 4.0) certification provides essential testing knowledge that can be put to practical use as well as the terminology and concepts used worldwide in the testing domain. The CTFL 4.0 certification is relevant across software delivery approaches and practices whether Agile, Waterfall, or DevOps with continuous integration, continuous delivery, and continuous testing.</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="content-text">
-                    <h3 class="line-title">ISTQB Advanced Level - Test Automation Engineering v2.0</h3>
-                    <span>2018</span>
-                    <p class="line-text">The Certified Tester Advanced Level Test Automation Engineering (CTAL-TAE) qualification is aimed at anyone involved in software testing and test automation. This includes people in roles such as testers, test analysts, test automation engineers, test consultants, test architects, test managers, and software developers.</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="content-text">
-                    <h3 class="line-title">Java SE 8 Programmer - Associate</h3>
-                    <span>2016</span>
-                    <p class="line-text">Certified in Java SE 8 programming fundamentals, demonstrating proficiency in core Java concepts, object-oriented programming, and basic application development.</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="content-text">
-                    <h3 class="line-title">Java SE 8 Programmer - Professional</h3>
-                    <span>2017</span>
-                    <p class="line-text">Advanced certification in Java SE 8, showcasing expertise in advanced Java programming techniques, concurrency, and building robust, scalable applications.</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <div class="experience wow fadeInRight" data-wow-delay="0.6s">
-              <ul class="timeline">
-                <li>
-                  <i class="icon-briefcase"></i>
-                  <h2 class="timelin-title">Experience</h2>
-                </li>
-                <li>
-                  <div class="content-text">
-                    <h3 class="line-title">QA Automation Lead - Tech Innovations Ltd.</h3>
-                    <span>Jan 2018 - Present</span>
-                    <p class="line-text">Leading a team of QA engineers to implement automation strategies for mobile and web applications, reducing testing time by 50% and improving product quality across releases.</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="content-text">
-                    <h3 class="line-title">Senior QA Engineer - FinServ Solutions</h3>
-                    <span>Nov 2015 - Dec 2017</span>
-                    <p class="line-text">Developed and maintained automation frameworks using Selenium and Appium, achieving 85% test automation coverage for financial applications.</p>
-                  </div>
-                </li>
-                <li>
-                  <div class="content-text">
-                    <h3 class="line-title">QA Engineer - HealthTech Systems</h3>
-                    <span>Mar 2012 - Oct 2015</span>
-                    <p class="line-text">Performed manual and automated testing for healthcare applications, ensuring compliance with HIPAA standards and reducing critical defects by 60%.</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-    <!-- Resume Section End -->
+</section>
+<!-- About Section End -->
 
-    <!-- Portfolio Section -->
-    <section id="portfolios" class="section-padding">
-      <!-- Container Starts -->
-      <div class="container">        
+<!-- Services Section Start -->
+<section id="services" class="services section-padding">
+    <h2 class="section-title wow flipInX" data-wow-delay="0.4s">What I Do</h2>
+    <div class="container">
+        <div class="row">
+            <!-- Services item -->
+            <div class="col-md-6 col-lg-3 col-xs-12">
+                <div class="services-item wow fadeInDown" data-wow-delay="0.3s">
+                    <div class="icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="services-content">
+                        <h3><a href="#">Mobile Test Automation</a></h3>
+                        <p>Lead mobile app testing using tools like Appium, ensuring quality for iOS and Android platforms with 90%+ test coverage.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Services item -->
+            <div class="col-md-6 col-lg-3 col-xs-12">
+                <div class="services-item wow fadeInDown" data-wow-delay="0.6s">
+                    <div class="icon">
+                        <i class="icon-wrench"></i>
+                    </div>
+                    <div class="services-content">
+                        <h3><a href="#">Test Automation Frameworks</a></h3>
+                        <p>Design scalable frameworks for mobile and web apps, integrating tools like Selenium and Appium for efficient testing.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Services item -->
+            <div class="col-md-6 col-lg-3 col-xs-12">
+                <div class="services-item wow fadeInDown" data-wow-delay="0.9s">
+                    <div class="icon">
+                        <i class="icon-rocket"></i>
+                    </div>
+                    <div class="services-content">
+                        <h3><a href="#">CI/CD Integration for Mobile</a></h3>
+                        <p>Implement automated mobile testing in CI/CD pipelines using Jenkins and Azure DevOps, speeding up release cycles by 40%.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Services item -->
+            <div class="col-md-6 col-lg-3 col-xs-12">
+                <div class="services-item wow fadeInDown" data-wow-delay="1.2s">
+                    <div class="icon">
+                        <i class="icon-people"></i>
+                    </div>
+                    <div class="services-content">
+                        <h3><a href="#">Team Leadership & Strategy</a></h3>
+                        <p>Guide QA teams to define mobile testing strategies, mentoring engineers and ensuring quality across projects.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Services Section End -->
+
+<!-- Resume Section Start -->
+<div id="resume" class="section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="education wow fadeInRight" data-wow-delay="0.3s">
+                    <ul class="timeline">
+                        <li>
+                            <i class="icon-graduation"></i>
+                            <h2 class="timelin-title">Certifications</h2>
+                        </li>
+                        <li>
+                            <div class="content-text">
+                                <h3 class="line-title">ISTQB Certified Tester Foundation Level</h3>
+                                <span>2015</span>
+                                <p class="line-text">The ISTQB Certified Tester Foundation Level 4.0 (CTFL 4.0) certification provides essential testing knowledge that can be put to practical use as well as the terminology and concepts used worldwide in the testing domain.
+                                    The CTFL 4.0 certification is relevant across software delivery approaches and practices whether Agile, Waterfall, or DevOps with continuous integration, continuous delivery, and continuous testing.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-text">
+                                <h3 class="line-title">ISTQB Advanced Level - Test Automation Engineering v2.0</h3>
+                                <span>2018</span>
+                                <p class="line-text">The Certified Tester Advanced Level Test Automation Engineering (CTAL-TAE) qualification is aimed at anyone involved in software testing and test automation. This includes people in roles such as testers, test analysts,
+                                    test automation engineers, test consultants, test architects, test managers, and software developers.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-text">
+                                <h3 class="line-title">Java SE 8 Programmer - Associate</h3>
+                                <span>2016</span>
+                                <p class="line-text">Certified in Java SE 8 programming fundamentals, demonstrating proficiency in core Java concepts, object-oriented programming, and basic application development.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-text">
+                                <h3 class="line-title">Java SE 8 Programmer - Professional</h3>
+                                <span>2017</span>
+                                <p class="line-text">Advanced certification in Java SE 8, showcasing expertise in advanced Java programming techniques, concurrency, and building robust, scalable applications.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="experience wow fadeInRight" data-wow-delay="0.6s">
+                    <ul class="timeline">
+                        <li>
+                            <i class="icon-briefcase"></i>
+                            <h2 class="timelin-title">Experience</h2>
+                        </li>
+                        <li>
+                            <div class="content-text">
+                                <h3 class="line-title">QA Automation Lead - Tech Innovations Ltd.</h3>
+                                <span>Jan 2018 - Present</span>
+                                <p class="line-text">Leading a team of QA engineers to implement automation strategies for mobile and web applications, reducing testing time by 50% and improving product quality across releases.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-text">
+                                <h3 class="line-title">Senior QA Engineer - FinServ Solutions</h3>
+                                <span>Nov 2015 - Dec 2017</span>
+                                <p class="line-text">Developed and maintained automation frameworks using Selenium and Appium, achieving 85% test automation coverage for financial applications.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="content-text">
+                                <h3 class="line-title">QA Engineer - HealthTech Systems</h3>
+                                <span>Mar 2012 - Oct 2015</span>
+                                <p class="line-text">Performed manual and automated testing for healthcare applications, ensuring compliance with HIPAA standards and reducing critical defects by 60%.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Resume Section End -->
+
+<!-- Portfolio Section -->
+<section id="portfolios" class="section-padding">
+    <!-- Container Starts -->
+    <div class="container">
         <h2 class="section-title wow flipInX" data-wow-delay="0.4s">My Remarkable Works</h2>
         <div class="row">
-          <div class="col-sm-6 col-md-3 mb-3">
-            <div class="card portfolio-panel wow fadeInDown" data-wow-delay="0.4s">
-              <!-- Replace with actual image: assets/img/selenium-logo.webp -->
-              <img src="https://placehold.co/400x150?text=Selenium" class="img-fluid" alt="Selenium Project" loading="lazy">
-              <div class="card-body">
-                <h4>Enterprise Test Automation Framework</h4>
-                <p><strong>Description:</strong> Designed a Selenium-based framework for an e-commerce platform, achieving 90% test coverage and reducing testing time from 3 days to 4 hours.</p>
-                <p><strong>Technologies:</strong> Selenium WebDriver, Java, Jenkins, TestNG, AWS</p>
-                <p><strong>Impact:</strong> Saved $200K annually and improved release cycles by 30%.</p>
-                <p><strong>Role:</strong> Led a team of 8 engineers and collaborated with DevOps.</p>
-                <a href="https://github.com/vishal2704" target="_blank" class="btn btn-common">View Details</a>
-              </div>
+            <div class="col-sm-6 col-md-3 mb-3">
+                <div class="card portfolio-panel wow fadeInDown" data-wow-delay="0.4s">
+                    <!-- Replace with actual image: assets/img/selenium-logo.webp -->
+                    <img src="https://placehold.co/400x150?text=Selenium" class="img-fluid" alt="Selenium Project" loading="lazy">
+                    <div class="card-body">
+                        <h4>Enterprise Test Automation Framework</h4>
+                        <p><strong>Description:</strong> Designed a Selenium-based framework for an e-commerce platform, achieving 90% test coverage and reducing testing time from 3 days to 4 hours.</p>
+                        <p><strong>Technologies:</strong> Selenium WebDriver, Java, Jenkins, TestNG, AWS</p>
+                        <p><strong>Impact:</strong> Saved $200K annually and improved release cycles by 30%.</p>
+                        <p><strong>Role:</strong> Led a team of 8 engineers and collaborated with DevOps.</p>
+                        <a href="https://github.com/vishal2704" target="_blank" class="btn btn-common">View Details</a>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-md-3 mb-3">
-            <div class="card portfolio-panel wow fadeInDown" data-wow-delay="0.6s">
-              <!-- Replace with actual image: assets/img/uipath-logo.webp -->
-              <img src="https://placehold.co/400x150?text=UiPath" class="img-fluid" alt="UiPath Project" loading="lazy">
-              <div class="card-body">
-                <h4>Robotic Process Automation for Financial Services</h4>
-                <p><strong>Description:</strong> Automated invoice processing with UiPath for 10,000+ transactions monthly, cutting manual effort by 70% and errors by 95%.</p>
-                <p><strong>Technologies:</strong> UiPath, Python, SQL, Azure</p>
-                <p><strong>Impact:</strong> Saved $300K annually and freed staff for strategic tasks.</p>
-                <p><strong>Role:</strong> Defined strategy and mentored 5 developers.</p>
-                <a href="https://github.com/vishal2704" target="_blank" class="btn btn-common">View Details</a>
-              </div>
+            <div class="col-sm-6 col-md-3 mb-3">
+                <div class="card portfolio-panel wow fadeInDown" data-wow-delay="0.6s">
+                    <!-- Replace with actual image: assets/img/uipath-logo.webp -->
+                    <img src="https://placehold.co/400x150?text=UiPath" class="img-fluid" alt="UiPath Project" loading="lazy">
+                    <div class="card-body">
+                        <h4>Robotic Process Automation for Financial Services</h4>
+                        <p><strong>Description:</strong> Automated invoice processing with UiPath for 10,000+ transactions monthly, cutting manual effort by 70% and errors by 95%.</p>
+                        <p><strong>Technologies:</strong> UiPath, Python, SQL, Azure</p>
+                        <p><strong>Impact:</strong> Saved $300K annually and freed staff for strategic tasks.</p>
+                        <p><strong>Role:</strong> Defined strategy and mentored 5 developers.</p>
+                        <a href="https://github.com/vishal2704" target="_blank" class="btn btn-common">View Details</a>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-md-3 mb-3">
-            <div class="card portfolio-panel wow fadeInDown" data-wow-delay="0.8s">
-              <!-- Replace with actual image: assets/img/appium-logo.webp -->
-              <img src="https://placehold.co/400x150?text=Appium" class="img-fluid" alt="Appium Project" loading="lazy">
-              <div class="card-body">
-                <h4>Mobile App Testing Automation Suite</h4>
-                <p><strong>Description:</strong> Built an Appium-based suite for a healthcare app, automating 200+ test cases and ensuring HIPAA compliance.</p>
-                <p><strong>Technologies:</strong> Appium, Java, Cucumber, BrowserStack</p>
-                <p><strong>Impact:</strong> Shortened release cycles by 40% with zero critical defects.</p>
-                <p><strong>Role:</strong> Coordinated with QA and product teams.</p>
-                <a href="https://github.com/vishal2704" target="_blank" class="btn btn-common">View Details</a>
-              </div>
+            <div class="col-sm-6 col-md-3 mb-3">
+                <div class="card portfolio-panel wow fadeInDown" data-wow-delay="0.8s">
+                    <!-- Replace with actual image: assets/img/appium-logo.webp -->
+                    <img src="https://placehold.co/400x150?text=Appium" class="img-fluid" alt="Appium Project" loading="lazy">
+                    <div class="card-body">
+                        <h4>Mobile App Testing Automation Suite</h4>
+                        <p><strong>Description:</strong> Built an Appium-based suite for a healthcare app, automating 200+ test cases and ensuring HIPAA compliance.</p>
+                        <p><strong>Technologies:</strong> Appium, Java, Cucumber, BrowserStack</p>
+                        <p><strong>Impact:</strong> Shortened release cycles by 40% with zero critical defects.</p>
+                        <p><strong>Role:</strong> Coordinated with QA and product teams.</p>
+                        <a href="https://github.com/vishal2704" target="_blank" class="btn btn-common">View Details</a>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-md-3 mb-3">
-            <div class="card portfolio-panel wow fadeInDown" data-wow-delay="1.0s">
-              <!-- Replace with actual image: assets/img/ai-logo.webp -->
-              <img src="https://placehold.co/400x150?text=AI" class="img-fluid" alt="AI Project" loading="lazy">
-              <div class="card-body">
-                <h4>AI-Driven Test Optimization Tool</h4>
-                <p><strong>Description:</strong> Developed an AI-powered tool for test prioritization, improving efficiency by 25% using ML algorithms.</p>
-                <p><strong>Technologies:</strong> Python, TensorFlow, Azure DevOps, REST APIs</p>
-                <p><strong>Impact:</strong> Cut testing costs by $100K annually.</p>
-                <p><strong>Role:</strong> Led proof-of-concept and scaled solution across teams.</p>
-                <a href="https://github.com/vishal2704" target="_blank" class="btn btn-common">View Details</a>
-              </div>
+            <div class="col-sm-6 col-md-3 mb-3">
+                <div class="card portfolio-panel wow fadeInDown" data-wow-delay="1.0s">
+                    <!-- Replace with actual image: assets/img/ai-logo.webp -->
+                    <img src="https://placehold.co/400x150?text=AI" class="img-fluid" alt="AI Project" loading="lazy">
+                    <div class="card-body">
+                        <h4>AI-Driven Test Optimization Tool</h4>
+                        <p><strong>Description:</strong> Developed an AI-powered tool for test prioritization, improving efficiency by 25% using ML algorithms.</p>
+                        <p><strong>Technologies:</strong> Python, TensorFlow, Azure DevOps, REST APIs</p>
+                        <p><strong>Impact:</strong> Cut testing costs by $100K annually.</p>
+                        <p><strong>Role:</strong> Led proof-of-concept and scaled solution across teams.</p>
+                        <a href="https://github.com/vishal2704" target="_blank" class="btn btn-common">View Details</a>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <!-- Container Ends -->
-    </section>
-    <!-- Portfolio Section Ends --> 
+    </div>
+    <!-- Container Ends -->
+</section>
+<!-- Portfolio Section Ends -->
 
-    <!-- Counter Area Start -->
-    <section class="counter-section section-padding">
-      <div class="container">
+
+<!-- Counter Area Start -->
+<section class="counter-section section-padding">
+    <div class="container">
         <div class="row">
-          <div class="col-12">
-            <div class="github-chart-container wow fadeInUp" data-wow-delay="0.4s" aria-label="GitHub Contribution Chart">
-              <h3 class="github-chart-title wow flipInX" data-wow-delay="0.4s">GitHub Contributions</h3>
-              <a href="https://github.com/vishal2704" target="_blank" rel="noopener noreferrer" aria-label="View Vishal Deshpande's GitHub profile">
-                <img src="https://ghchart.rshah.org/vishal2704" alt="Vishal Deshpande's GitHub contribution chart" class="github-chart-img img-fluid" loading="lazy">
-              </a>
+            <div class="col-12">
+                <div class="github-chart-container wow fadeInUp" data-wow-delay="0.4s" aria-label="GitHub Contribution Chart">
+                    <h3 class="github-chart-title wow flipInX" data-wow-delay="0.4s">GitHub Contributions</h3>
+                    <a href="https://github.com/vishal2704" target="_blank" rel="noopener noreferrer" aria-label="View Vishal Deshpande's GitHub profile">
+                        <img src="https://ghchart.rshah.org/vishal2704" alt="Vishal Deshpande's GitHub contribution chart" class="github-chart-img img-fluid" loading="lazy">
+                    </a>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <!-- Counter Area End -->
+    </div>
+</section>
+<!-- Counter Area End -->
 
-    <!-- Testimonials Section Start -->
-    <section id="testimonials" class="testimonials-section section-padding">
-      <div class="container">
+<!-- Testimonials Section Start -->
+<section id="testimonials" class="testimonials-section section-padding">
+    <div class="container">
         <h2 class="section-title wow flipInX" data-wow-delay="0.4s">What My Clients Say</h2>
         <div class="testimonial-carousel">
-          <div class="col-md-4 col-12">
-            <div class="testimonial-card wow fadeInUp" data-wow-delay="0.3s">
-              <p>"Vishal’s expertise in mobile test automation transformed our release process, saving us countless hours and ensuring top-notch quality."</p>
-              <div class="customer-info">
-                <strong>John Smith</strong>
-                <span>CTO at TechCorp</span>
-              </div>
+            <div class="col-md-4 col-12">
+                <div class="testimonial-card wow fadeInUp" data-wow-delay="0.3s">
+                    <p>"Vishal’s expertise in mobile test automation transformed our release process, saving us countless hours and ensuring top-notch quality."</p>
+                    <div class="customer-info">
+                        <strong>John Smith</strong>
+                        <span>CTO at TechCorp</span>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-md-4 col-12">
-            <div class="testimonial-card wow fadeInUp" data-wow-delay="0.6s">
-              <p>"The automation framework Vishal developed for us was a game-changer, reducing defects by 80% and boosting team efficiency."</p>
-              <div class="customer-info">
-                <strong>Sarah Johnson</strong>
-                <span>QA Manager at FinServ</span>
-              </div>
+            <div class="col-md-4 col-12">
+                <div class="testimonial-card wow fadeInUp" data-wow-delay="0.6s">
+                    <p>"The automation framework Vishal developed for us was a game-changer, reducing defects by 80% and boosting team efficiency."</p>
+                    <div class="customer-info">
+                        <strong>Sarah Johnson</strong>
+                        <span>QA Manager at FinServ</span>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-md-4 col-12">
-            <div class="testimonial-card wow fadeInUp" data-wow-delay="0.9s">
-              <p>"Working with Vishal was a pleasure—his CI/CD integration for mobile testing accelerated our deployments by 40%."</p>
-              <div class="customer-info">
-                <strong>Mike Brown</strong>
-                <span>DevOps Lead at HealthApp</span>
-              </div>
+            <div class="col-md-4 col-12">
+                <div class="testimonial-card wow fadeInUp" data-wow-delay="0.9s">
+                    <p>"Working with Vishal was a pleasure—his CI/CD integration for mobile testing accelerated our deployments by 40%."</p>
+                    <div class="customer-info">
+                        <strong>Mike Brown</strong>
+                        <span>DevOps Lead at HealthApp</span>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <!-- Testimonials Section End -->
+    </div>
+</section>
+<!-- Testimonials Section End -->
 
-    <!-- Contact Section Start -->
-    <section id="contact" class="section-padding">
-      <div class="contact-form">
+<!-- Contact Section Start -->
+<section id="contact" class="section-padding">
+    <div class="contact-form">
         <div class="container">
-          <div class="row contact-form-area wow fadeInUp" data-wow-delay="0.4s">
-            <div class="col-md-6 col-sm-12">
-              <div class="contact-block">
-                <h2>Contact Me</h2>
-                <form action="#" method="post" class="contact-form">
-                  <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required aria-label="Your Name">
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required aria-label="Your Email">
-                  </div>
-                  <div class="form-group">
-                    <label for="role">I am a</label>
-                    <select class="form-control" id="role" name="role" required aria-label="Your Role">
-                      <option value="" disabled selected>Select your role</option>
-                      <option value="recruiter">Recruiter</option>
-                      <option value="employer">Employer</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" class="form-control" id="subject" name="subject" required aria-label="Subject of your message">
-                  </div>
-                  <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea class="form-control" id="message" name="message" rows="5" required aria-label="Your Message"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label>Preferred Contact Method</label>
-                    <div class="radio-group">
-                      <label>
-                        <input type="radio" name="contact_method" value="email" checked required aria-label="Preferred contact method: Email">
-                        Email
-                      </label>
-                      <label>
-                        <input type="radio" name="contact_method" value="phone" required aria-label="Preferred contact method: Phone">
-                        Phone
-                      </label>
+            <div class="row contact-form-area wow fadeInUp" data-wow-delay="0.4s">
+                <div class="col-md-6 col-sm-12">
+                    <div class="contact-block">
+                        <h2>Contact Me</h2>
+                        <form action="#" method="post" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required aria-label="Your Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required aria-label="Your Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="role">I am a</label>
+                                <select class="form-control" id="role" name="role" required aria-label="Your Role">
+                                    <option value="" disabled selected>Select your role</option>
+                                    <option value="recruiter">Recruiter</option>
+                                    <option value="employer">Employer</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="subject" required aria-label="Subject of your message">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" required aria-label="Your Message"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Preferred Contact Method</label>
+                                <div class="radio-group">
+                                    <label>
+                                        <input type="radio" name="contact_method" value="email" checked required aria-label="Preferred contact method: Email"> Email
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="contact_method" value="phone" required aria-label="Preferred contact method: Phone"> Phone
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group checkbox-group">
+                                <input type="checkbox" id="consent" name="consent" required aria-label="Consent to data handling">
+                                <label for="consent">I agree to the storage and handling of my data for contact purposes.</label>
+                            </div>
+                            <button type="submit" class="btn btn-common" aria-label="Send Message">Send Message</button>
+                        </form>
                     </div>
-                  </div>
-                  <div class="form-group checkbox-group">
-                    <input type="checkbox" id="consent" name="consent" required aria-label="Consent to data handling">
-                    <label for="consent">I agree to the storage and handling of my data for contact purposes.</label>
-                  </div>
-                  <button type="submit" class="btn btn-common" aria-label="Send Message">Send Message</button>
-                </form>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-12">
-              <div class="footer-right-area wow fadeIn">
-                <h2>Contact Information</h2>
-                <div class="footer-right-contact">
-                  <div class="single-contact" aria-describedby="location-info">
-                    <div class="contact-icon">
-                      <i class="fa fa-map-marker"></i>
-                    </div>
-                    <p id="location-info">Harrow, UK</p>
-                  </div>
-                  <div class="single-contact" aria-describedby="email-info">
-                    <div class="contact-icon">
-                      <i class="fa fa-envelope"></i>
-                    </div>
-                    <p id="email-info"><a href="mailto:vishal.deshpande@example.com" aria-label="Email Vishal Deshpande">vishal.deshpande@example.com</a></p>
-                  </div>
-                  <div class="single-contact" aria-describedby="phone-info">
-                    <div class="contact-icon">
-                      <i class="fa fa-phone"></i>
-                    </div>
-                    <p id="phone-info"><a href="tel:+447748857988" aria-label="Call Vishal Deshpande">+44 07748 857988</a></p>
-                  </div>
                 </div>
-                <div class="contact-map">
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158857.83573889456!2d-0.34686529999999996!3d51.5968275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487611b7d83251f7%3A0x234dc4eb26aa83b!2sHarrow%2C%20UK!5e0!3m2!1sen!2sus!4v1698181234567!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-label="Map of Harrow, UK"></iframe>
+                <div class="col-md-6 col-sm-12">
+                    <div class="footer-right-area wow fadeIn">
+                        <h2>Contact Information</h2>
+                        <div class="footer-right-contact">
+                            <div class="single-contact" aria-describedby="location-info">
+                                <div class="contact-icon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <p id="location-info">Harrow, UK</p>
+                            </div>
+                            <div class="single-contact" aria-describedby="email-info">
+                                <div class="contact-icon">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <p id="email-info"><a href="mailto:vishal.deshpande@example.com" aria-label="Email Vishal Deshpande">vishal.deshpande@example.com</a></p>
+                            </div>
+                            <div class="single-contact" aria-describedby="phone-info">
+                                <div class="contact-icon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <p id="phone-info"><a href="tel:+447748857988" aria-label="Call Vishal Deshpande">+44 07748 857988</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158857.83573889456!2d-0.34686529999999996!3d51.5968275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487611b7d83251f7%3A0x234dc4eb26aa83b!2sHarrow%2C%20UK!5e0!3m2!1sen!2sus!4v1698181234567!5m2!1sen!2sus"
+                                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" aria-label="Map of Harrow, UK"></iframe>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-    </section>
-    <!-- Contact Section End -->
+    </div>
+</section>
+<!-- Contact Section End -->
 
-    <!-- Footer Section Start -->
-    <footer class="footer-area section-padding">
-      <div class="container">
+<!-- Footer Section Start -->
+<footer class="footer-area section-padding">
+    <div class="container">
         <div class="row">
-          <div class="col-md-12">
-            <div class="footer-text text-center wow fadeInDown" data-wow-delay="0.3s">
-              <ul class="social-icon">
-                <li>
-                  <a class="facebook" href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile"><i class="icon-social-facebook"></i></a>
-                </li>
-                <li>
-                  <a class="twitter" href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile"><i class="icon-social-twitter"></i></a>
-                </li>
-                <li>
-                  <a class="instagram" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile"><i class="icon-social-instagram"></i></a>
-                </li>
-                <li>
-                  <a class="linkedin" href="https://www.linkedin.com/in/vishal-d-78362b22/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="icon-social-linkedin"></i></a>
-                </li>
-                <li>
-                  <a class="github" href="https://github.com/vishal2704" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="icon-social-github"></i></a>
-                </li>
-              </ul>
-              <p>Copyright © 2018 UIdeck All Right Reserved</p>
+            <div class="col-md-12">
+                <div class="footer-text text-center wow fadeInDown" data-wow-delay="0.3s">
+                    <ul class="social-icon">
+                        <li>
+                            <a class="facebook" href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile"><i class="icon-social-facebook"></i></a>
+                        </li>
+                        <li>
+                            <a class="twitter" href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile"><i class="icon-social-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a class="instagram" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile"><i class="icon-social-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a class="linkedin" href="https://www.linkedin.com/in/vishal-d-78362b22/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="icon-social-linkedin"></i></a>
+                        </li>
+                        <li>
+                            <a class="github" href="https://github.com/vishal2704" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="icon-social-github"></i></a>
+                        </li>
+                    </ul>
+                    <p>Copyright © 2025</p>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </footer>
-    <!-- Footer Section End -->
+    </div>
+</footer>
+<!-- Footer Section End -->
 
-    <!-- Go to Top Link -->
-    <a href="#" class="back-to-top" aria-label="Go to Top">
-      <i class="icon-arrow-up"></i>
-    </a>
+<!-- Go to Top Link (Already exists - keep as is) -->
+<a href="#" class="back-to-top" aria-label="Go to Top">
+    <i class="icon-arrow-up"></i>
+</a>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="assets/js/jquery-min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.mixitup.js"></script>
-    <script src="assets/js/wow.js"></script>
-    <script src="assets/js/jquery.nav.js"></script>
-    <script src="assets/js/jquery.easing.min.js"></script>
-    <script src="assets/js/nivo-lightbox.js"></script>
-    <script src="assets/js/jquery.slicknav.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script>
-      function toggleStatus() {
+<!-- Go to Bottom Link (New) -->
+<a href="#contact" class="go-to-bottom" aria-label="Go to Bottom">
+    <i class="icon-arrow-down"></i>
+</a>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="assets/js/jquery-min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.mixitup.js"></script>
+<script src="assets/js/wow.js"></script>
+<script src="assets/js/jquery.nav.js"></script>
+<script src="assets/js/jquery.easing.min.js"></script>
+<script src="assets/js/nivo-lightbox.js"></script>
+<script src="assets/js/jquery.slicknav.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+    function toggleStatus() {
         const statusText = document.getElementById("status");
         const checkbox = document.getElementById("toggleCheckbox");
         const unavailableDates = document.getElementById("unavailable-dates");
@@ -1019,10 +1081,51 @@
         }
       }
 
+      $(document).ready(function() {
+    // Function to toggle visibility of navigation buttons
+    function toggleNavButtons() {
+      // For back-to-top button
+      if ($(window).scrollTop() > 300) {
+        $('.back-to-top').addClass('active');
+      } else {
+        $('.back-to-top').removeClass('active');
+      }
+
+      // For go-to-bottom button (show only when not at bottom of page)
+      if ($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+        $('body').addClass('bottom-reached');
+      } else {
+        $('body').removeClass('bottom-reached');
+        $('.go-to-bottom').addClass('active');
+      }
+    }
+
+    // Initial check
+    toggleNavButtons();
+
+    // Check on scroll
+    $(window).scroll(function() {
+      toggleNavButtons();
+    });
+
+    // Smooth scroll to top when clicking back-to-top button
+    $('.back-to-top').on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({scrollTop: 0}, 800);
+    });
+
+    // Smooth scroll to bottom when clicking go-to-bottom button
+    $('.go-to-bottom').on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({scrollTop: $(document).height()}, 800);
+    });
+  });
+
       window.addEventListener('load', updateFreelanceStatus);
       window.addEventListener('online', updateFreelanceStatus);
       window.addEventListener('offline', updateFreelanceStatus);
       setInterval(updateFreelanceStatus, 24 * 60 * 60 * 1000);
-    </script>
-  </body>
+</script>
+</body>
+
 </html>
