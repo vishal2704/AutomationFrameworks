@@ -3,107 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Testing Playground - Home</title>
+    <title>UI Testing Playground - Home</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: url('images/background.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: #333;
-            display: flex;
-        }
-        .side-panel {
-            width: 250px;
-            background: #000000;
-            color: #ffffff;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding-top: 60px;
-            overflow-y: auto;
-            z-index: 1000;
-        }
-        .side-panel .components-link {
-            padding: 15px;
-            background: #3498db; /* Blue background to stand out */
-            text-align: center;
-            border-bottom: 2px solid #1a1a1a;
-        }
-        .side-panel .components-link a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 1.3em;
-            font-weight: bold;
-        }
-        .side-panel .components-link a:hover {
-            color: #b7d7e4;
-        }
-        .side-panel h2 {
-            padding: 10px 15px;
-            margin: 0;
-            font-size: 1.2em;
-            background: #1a1a1a;
-        }
-        .menu-section {
-            margin: 10px 0;
-        }
-        .menu-section > a {
-            display: block;
-            padding: 10px 15px;
-            color: #ffffff;
-            text-decoration: none;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .menu-section > a:hover {
-            background: #3498db;
-        }
-        .submenu {
-            display: none;
-            padding-left: 20px;
-        }
-        .submenu a {
-            display: block;
-            padding: 8px 15px;
-            color: #cccccc;
-            text-decoration: none;
-        }
-        .submenu a:hover {
-            background: #3498db;
-            color: #ffffff;
-        }
-        .expandable::after {
-            content: ' ▼';
-            font-size: 0.8em;
-            float: right;
-        }
-        .expandable.expanded::after {
-            content: ' ▲';
-        }
-        .main-content {
-            margin-left: 250px;
-            padding: 20px;
-            flex: 1;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95); /* Increased opacity for better readability */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-        }
-        article, section {
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.98); /* Increased opacity for better readability */
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-    </style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: url('images/background.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+        display: flex;
+    }
+    .side-panel {
+        width: 250px;
+        background: #000000;
+        color: #ffffff;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding-top: 60px;
+        overflow-y: auto;
+        z-index: 1000;
+    }
+    .side-panel .components-link {
+        padding: 15px;
+        background: #3498db; /* Blue background to stand out */
+        text-align: center;
+        border-bottom: 2px solid #1a1a1a;
+    }
+    .side-panel .components-link a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+    .side-panel .components-link a:hover {
+        color: #b7d7e4;
+    }
+    .side-panel h2 {
+        padding: 10px 15px;
+        margin: 0;
+        font-size: 1.2em;
+        background: #1a1a1a;
+    }
+    .menu-section {
+        margin: 10px 0;
+    }
+    .menu-section > a {
+        display: block;
+        padding: 10px 15px;
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .menu-section > a:hover {
+        background: #3498db;
+    }
+    .submenu {
+        display: none;
+        padding-left: 20px;
+    }
+    .submenu a {
+        display: block;
+        padding: 8px 15px;
+        color: #cccccc;
+        text-decoration: none;
+    }
+    .submenu a:hover {
+        background: #3498db;
+        color: #ffffff;
+    }
+    .expandable::after {
+        content: ' ▼';
+        font-size: 0.8em;
+        float: right;
+    }
+    .expandable.expanded::after {
+        content: ' ▲';
+    }
+    .main-content {
+        margin-left: 250px;
+        padding: 20px;
+        flex: 1;
+    }
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.6); /* Transparency from previous change */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    .container h1 {
+        text-align: center; /* Center the h1 text */
+    }
+    article, section {
+        margin: 20px 0;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.65); /* Transparency from previous change */
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+</style>
 </head>
 <body>
     <div class="side-panel">
@@ -162,8 +165,9 @@
 
     <div class="main-content">
         <div class="container">
-            <h1>Welcome to Testing Playground</h1>
-
+		<article>
+            <h1>Welcome to UI Testing Playground</h1>
+		</article>
             <article>
                 <h2>The Importance of Software Testing</h2>
                 <p>Software testing is a critical phase in the development lifecycle that ensures the quality, reliability, and performance of applications. It involves systematically evaluating software to identify bugs, validate functionality, and verify that it meets specified requirements.</p>
