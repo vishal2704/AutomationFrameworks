@@ -1,466 +1,656 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Vishal Deshpande - Blogs</title>
+  <title>Vishal Deshpande - Blogs</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" >
-    <!-- Fonts (Font Awesome 5.15.4 CDN) -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
-    <!-- Simple Line Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css">
-    <!-- Slicknav -->
-    <link rel="stylesheet" type="text/css" href="assets/css/slicknav.css">
-    <!-- Nivo Lightbox -->
-    <link rel="stylesheet" type="text/css" href="assets/css/nivo-lightbox.css" >
-    <!-- Animate -->
-    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
-    <!-- Main Style -->
-    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
-    <!-- Responsive Style -->
-    <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
-    <style>
-      /* Blog Section Styles */
-      .blog-section {
-        background-color: #f8f9fa; /* Light gray background for contrast */
-        padding: 60px 0;
-      }
-      .blog-section .section-title {
-        text-align: center;
-        margin-bottom: 40px;
-        color: #2c3e50;
-      }
-      .blog-list {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .blog-item {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-      }
-      .blog-item:hover {
-        transform: translateY(-3px);
-      }
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+  <!-- Fonts (Font Awesome 5.15.4 CDN) -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <!-- Simple Line Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css">
+  <!-- Slicknav -->
+  <link rel="stylesheet" type="text/css" href="assets/css/slicknav.css">
+  <!-- Nivo Lightbox -->
+  <link rel="stylesheet" type="text/css" href="assets/css/nivo-lightbox.css">
+  <!-- Animate -->
+  <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+  <!-- Main Style -->
+  <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+  <!-- Responsive Style -->
+  <link rel="stylesheet" type="text/css" href="assets/css/responsive.css">
+  <style>
+    /* Blog Section Styles */
+    .blog-section {
+      background-color: #f8f9fa; /* Light gray background for contrast */
+      padding: 60px 0;
+    }
+    .blog-section .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #2c3e50;
+    }
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .blog-item {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .blog-item:hover {
+      transform: translateY(-3px);
+    }
+    .blog-item .blog-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .blog-item img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+    .blog-content {
+      flex-grow: 1;
+    }
+    .blog-content h4 {
+      font-size: 1.2em;
+      color: #2c3e50;
+      margin-bottom: 8px;
+    }
+    .blog-content .blog-meta {
+      font-size: 0.85em;
+      color: #6c757d;
+      margin-bottom: 8px;
+    }
+    .blog-content p {
+      font-size: 0.9em;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* Limit to 3 lines */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .blog-content .btn {
+      font-size: 0.85em;
+      padding: 6px 12px;
+    }
+    /* Comments Section Styles */
+    .comments-section {
+      display: none; /* Hidden by default */
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #e0e0e0;
+    }
+    .comments-section h5 {
+      font-size: 1.1em;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+    .comment-form .form-group {
+      margin-bottom: 15px;
+    }
+    .comment-form textarea {
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #e0e0e0;
+      padding: 10px;
+      font-size: 0.9em;
+      resize: vertical;
+    }
+    .comment-form .btn {
+      font-size: 0.85em;
+      padding: 8px 15px;
+    }
+    .comment-list {
+      margin-top: 20px;
+    }
+    .comment-item {
+      padding: 15px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    .comment-item p {
+      font-size: 0.9em;
+      color: #555;
+      margin: 0;
+    }
+    .comment-item .comment-meta {
+      font-size: 0.8em;
+      color: #6c757d;
+      margin-bottom: 5px;
+    }
+    /* Sidebar (Topics) Styles */
+    .blog-sidebar {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      min-height: 400px; /* Ensure sufficient height */
+    }
+    .blog-sidebar h3 {
+      font-size: 1.3em;
+      color: #2c3e50;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #4CAF50;
+      padding-bottom: 10px;
+    }
+    .topics-list {
+      list-style: none;
+      padding: 0;
+    }
+    .topics-list li {
+      margin-bottom: 10px;
+    }
+    .topics-list a {
+      font-size: 0.95em;
+      color: #2c3e50;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .topics-list a:hover {
+      background-color: #f1f1f1;
+      color: #4CAF50;
+    }
+    .topics-list a i {
+      margin-right: 10px;
+      color: #4CAF50;
+    }
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
       .blog-item .blog-header {
-        display: flex;
-        align-items: center;
-        gap: 20px;
+        flex-direction: column;
+        align-items: flex-start;
       }
       .blog-item img {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        border-radius: 8px;
-        flex-shrink: 0;
-      }
-      .blog-content {
-        flex-grow: 1;
+        width: 100%;
+        height: 150px;
       }
       .blog-content h4 {
-        font-size: 1.2em;
-        color: #2c3e50;
-        margin-bottom: 8px;
-      }
-      .blog-content .blog-meta {
-        font-size: 0.85em;
-        color: #6c757d;
-        margin-bottom: 8px;
+        font-size: 1.1em;
       }
       .blog-content p {
-        font-size: 0.9em;
-        color: #555;
-        line-height: 1.6;
-        margin-bottom: 10px;
-        display: -webkit-box;
-        -webkit-line-clamp: 3; /* Limit to 3 lines */
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .blog-content .btn {
         font-size: 0.85em;
-        padding: 6px 12px;
       }
-      /* Comments Section Styles */
-      .comments-section {
-        display: none; /* Hidden by default */
-        margin-top: 20px;
-        padding-top: 20px;
-        border-top: 1px solid #e0e0e0;
+      .blog-sidebar {
+        margin-top: 30px; /* Space when stacked */
       }
       .comments-section h5 {
-        font-size: 1.1em;
-        color: #2c3e50;
-        margin-bottom: 15px;
-      }
-      .comment-form .form-group {
-        margin-bottom: 15px;
+        font-size: 1em;
       }
       .comment-form textarea {
-        width: 100%;
-        border-radius: 5px;
-        border: 1px solid #e0e0e0;
-        padding: 10px;
-        font-size: 0.9em;
-        resize: vertical;
-      }
-      .comment-form .btn {
         font-size: 0.85em;
-        padding: 8px 15px;
       }
-      .comment-list {
-        margin-top: 20px;
+    }
+    @media (max-width: 576px) {
+      .blog-item img {
+        height: 120px;
       }
-      .comment-item {
-        padding: 15px;
-        background-color: #f9f9f9;
-        border-radius: 5px;
-        margin-bottom: 10px;
+      .blog-content h4 {
+        font-size: 1em;
       }
-      .comment-item p {
-        font-size: 0.9em;
-        color: #555;
-        margin: 0;
-      }
-      .comment-item .comment-meta {
+      .blog-content p {
         font-size: 0.8em;
-        color: #6c757d;
-        margin-bottom: 5px;
-      }
-      /* Sidebar (Topics) Styles */
-      .blog-sidebar {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        min-height: 400px; /* Ensure sufficient height */
       }
       .blog-sidebar h3 {
-        font-size: 1.3em;
-        color: #2c3e50;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #4CAF50;
-        padding-bottom: 10px;
-      }
-      .topics-list {
-        list-style: none;
-        padding: 0;
-      }
-      .topics-list li {
-        margin-bottom: 10px;
+        font-size: 1.2em;
       }
       .topics-list a {
-        font-size: 0.95em;
-        color: #2c3e50;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        padding: 8px;
-        border-radius: 5px;
-        transition: background-color 0.3s ease;
+        font-size: 0.9em;
       }
-      .topics-list a:hover {
-        background-color: #f1f1f1;
-        color: #4CAF50;
+      .comment-item p {
+        font-size: 0.85em;
       }
-      .topics-list a i {
-        margin-right: 10px;
-        color: #4CAF50;
+      .comment-item .comment-meta {
+        font-size: 0.75em;
       }
-      /* Responsive Adjustments */
-      @media (max-width: 768px) {
-        .blog-item .blog-header {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .blog-item img {
-          width: 100%;
-          height: 150px;
-        }
-        .blog-content h4 {
-          font-size: 1.1em;
-        }
-        .blog-content p {
-          font-size: 0.85em;
-        }
-        .blog-sidebar {
-          margin-top: 30px; /* Space when stacked */
-        }
-        .comments-section h5 {
-          font-size: 1em;
-        }
-        .comment-form textarea {
-          font-size: 0.85em;
-        }
-      }
-      @media (max-width: 576px) {
-        .blog-item img {
-          height: 120px;
-        }
-        .blog-content h4 {
-          font-size: 1em;
-        }
-        .blog-content p {
-          font-size: 0.8em;
-        }
-        .blog-sidebar h3 {
-          font-size: 1.2em;
-        }
-        .topics-list a {
-          font-size: 0.9em;
-        }
-        .comment-item p {
-          font-size: 0.85em;
-        }
-        .comment-item .comment-meta {
-          font-size: 0.75em;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Header Area wrapper Starts -->
-    <header id="header-wrap">
-      <!-- Navbar Start -->
-      <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
-        <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-              <span class="icon-menu"></span>
-              <span class="icon-menu"></span>
-              <span class="icon-menu"></span>
-            </button>
-            <a href="index.html" class="navbar-brand"><img src="assets/img/logo.jpg" alt="Vishal Deshpande Logo"></a>
-          </div>
-          <div class="collapse navbar-collapse" id="main-navbar">
-            <ul class="onepage-nev navbar-nav mr-auto w-100 justify-content-end clearfix">
-              <li class="nav-item">
-                <a class="nav-link" href="index.html#intro-area">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index.html#about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index.html#services">Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index.html#resume">Resume</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index.html#portfolios">Work</a>
-              </li>
-			  <li class="nav-item">
-                <a class="nav-link" href="index.html#contact">Contact</a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="blogs.html">Blogs</a>
-              </li>
-              
-            </ul>
-          </div>
-        </div>
-        <!-- Mobile Menu Start -->
-        <ul class="onepage-nev mobile-menu">
-          <li><a href="index.html#intro-area">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
-          <li><a href="index.html#services">Services</a></li>
-          <li><a href="index.html#resume">Resume</a></li>
-          <li><a href="index.html#portfolios">Work</a></li>
-		  <li><a href="index.html#contact">Contact</a></li>
-          <li><a href="blogs.html">Blogs</a></li>
-          
+    }
+    /* Music Button and Track Display Styles */
+    #musicButton {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: #00b4d9;
+      color: white;
+      font-size: 20px;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #musicButton:hover {
+      background-color: #0097b6;
+    }
+    #currentTrack {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<!-- Audio element -->
+<audio id="backgroundMusic" preload="auto" muted></audio>
+
+<!-- Music Control Button -->
+<button id="musicButton" aria-label="Play/Pause Music">
+  🎵
+</button>
+<span id="currentTrack"></span>
+
+<!-- Header Area wrapper Starts -->
+<header id="header-wrap">
+  <!-- Navbar Start -->
+  <nav class="navbar navbar-expand-lg fixed-top scrolling-navbar indigo">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          <span class="icon-menu"></span>
+          <span class="icon-menu"></span>
+          <span class="icon-menu"></span>
+        </button>
+        <a href="index.html" class="navbar-brand"><img src="assets/img/logo.jpg" alt="Vishal Deshpande Logo"></a>
+      </div>
+      <div class="collapse navbar-collapse" id="main-navbar">
+        <ul class="onepage-nev navbar-nav mr-auto w-100 justify-content-end clearfix">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#hero-area">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#services">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#resume">Resume</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#portfolios">Work</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.html#contact">Contact</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="blogs.html">Blogs</a>
+          </li>
         </ul>
-        <!-- Mobile Menu End -->
-      </nav>
-      <!-- Navbar End -->
-    </header>
-    <!-- Header Area wrapper End -->
+      </div>
+    </div>
+    <!-- Mobile Menu Start -->
+    <ul class="onepage-nev mobile-menu">
+      <li><a href="index.html#hero-area">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#resume">Resume</a></li>
+      <li><a href="index.html#portfolios">Work</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
+    </ul>
+    <!-- Mobile Menu End -->
+  </nav>
+  <!-- Navbar End -->
+</header>
+<!-- Header Area wrapper End -->
 
-    <!-- Blog Section Start -->
-    <section id="blogs" class="blog-section section-padding">
-      <div class="container">
-        <h2 class="section-title wow flipInX" data-wow-delay="0.4s">My Blogs</h2>
-        <div class="row">
-          <!-- Blog List on Left -->
-          <div class="col-lg-8 col-md-7 col-sm-12">
-            <div class="blog-list wow fadeInUp" data-wow-delay="0.3s">
-              <!-- Blog Post 1 -->
-              <div class="blog-item">
-                <div class="blog-header">
-                  <img src="https://placehold.co/120x120?text=Automation" class="img-fluid" alt="Automation Blog" loading="lazy">
-                  <div class="blog-content">
-                    <h4>Scaling Test Automation with Appium</h4>
-                    <div class="blog-meta">Posted on April 10, 2025</div>
-                    <p>Explore how to build scalable mobile test automation frameworks using Appium, with practical tips on integrating with CI/CD pipelines and achieving high test coverage for iOS and Android platforms.</p>
-                    <button class="btn btn-common toggle-comments" data-target="comments-1">Read More</button>
-                  </div>
-                </div>
-                <div class="comments-section" id="comments-1">
-                  <h5>Comments</h5>
-                  <div class="comment-form">
-                    <div class="form-group">
-                      <textarea rows="4" placeholder="Add your comment..." required aria-label="Your comment"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-common">Submit Comment</button>
-                  </div>
-                  <div class="comment-list">
-                    <div class="comment-item">
-                      <div class="comment-meta">Jane Doe - April 12, 2025</div>
-                      <p>Great insights on Appium! The CI/CD integration tips were particularly helpful.</p>
-                    </div>
-                    <div class="comment-item">
-                      <div class="comment-meta">John Smith - April 11, 2025</div>
-                      <p>Really useful post. Have you tried Appium with cloud testing platforms like BrowserStack?</p>
-                    </div>
-                  </div>
-                </div>
+<!-- Blog Section Start -->
+<section id="blogs" class="blog-section section-padding">
+  <div class="container">
+    <h2 class="section-title wow flipInX" data-wow-delay="0.4s">My Blogs</h2>
+    <div class="row">
+      <!-- Blog List on Left -->
+      <div class="col-lg-8 col-md-7 col-sm-12">
+        <div class="blog-list wow fadeInUp" data-wow-delay="0.3s">
+          <!-- Blog Post 1 -->
+          <div class="blog-item">
+            <div class="blog-header">
+              <img src="https://placehold.co/120x120?text=Automation" class="img-fluid" alt="Automation Blog" loading="lazy">
+              <div class="blog-content">
+                <h4>Scaling Test Automation with Appium</h4>
+                <div class="blog-meta">Posted on April 10, 2025</div>
+                <p>Explore how to build scalable mobile test automation frameworks using Appium, with practical tips on integrating with CI/CD pipelines and achieving high test coverage for iOS and Android platforms.</p>
+                <button class="btn btn-common toggle-comments" data-target="comments-1">Read More</button>
               </div>
-              <!-- Blog Post 2 -->
-              <div class="blog-item">
-                <div class="blog-header">
-                  <img src="https://placehold.co/120x120?text=CI/CD" class="img-fluid" alt="CI/CD Blog" loading="lazy">
-                  <div class="blog-content">
-                    <h4>CI/CD for Mobile Testing</h4>
-                    <div class="blog-meta">Posted on March 15, 2025</div>
-                    <p>Learn how to integrate automated mobile testing into CI/CD pipelines using Jenkins and Azure DevOps, streamlining workflows and accelerating release cycles by up to 40%.</p>
-                    <button class="btn btn-common toggle-comments" data-target="comments-2">Read More</button>
-                  </div>
+            </div>
+            <div class="comments-section" id="comments-1">
+              <h5>Comments</h5>
+              <div class="comment-form">
+                <div class="form-group">
+                  <textarea rows="4" placeholder="Add your comment..." required aria-label="Your comment"></textarea>
                 </div>
-                <div class="comments-section" id="comments-2">
-                  <h5>Comments</h5>
-                  <div class="comment-form">
-                    <div class="form-group">
-                      <textarea rows="4" placeholder="Add your comment..." required aria-label="Your comment"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-common">Submit Comment</button>
-                  </div>
-                  <div class="comment-list">
-                    <div class="comment-item">
-                      <div class="comment-meta">Sarah Lee - March 17, 2025</div>
-                      <p>Excellent guide! The Azure DevOps setup was easy to follow.</p>
-                    </div>
-                    <div class="comment-item">
-                      <div class="comment-meta">Mike Brown - March 16, 2025</div>
-                      <p>Would love to see a follow-up on GitLab CI for mobile testing.</p>
-                    </div>
-                  </div>
-                </div>
+                <button type="submit" class="btn btn-common">Submit Comment</button>
               </div>
-              <!-- Blog Post 3 -->
-              <div class="blog-item">
-                <div class="blog-header">
-                  <img src="https://placehold.co/120x120?text=AI+Testing" class="img-fluid" alt="AI Testing Blog" loading="lazy">
-                  <div class="blog-content">
-                    <h4>AI in Test Optimization</h4>
-                    <div class="blog-meta">Posted on February 20, 2025</div>
-                    <p>Discover how AI-driven tools can prioritize test cases, optimize testing processes, and reduce costs by leveraging machine learning algorithms for smarter QA workflows.</p>
-                    <button class="btn btn-common toggle-comments" data-target="comments-3">Read More</button>
-                  </div>
+              <div class="comment-list">
+                <div class="comment-item">
+                  <div class="comment-meta">Jane Doe - April 12, 2025</div>
+                  <p>Great insights on Appium! The CI/CD integration tips were particularly helpful.</p>
                 </div>
-                <div class="comments-section" id="comments-3">
-                  <h5>Comments</h5>
-                  <div class="comment-form">
-                    <div class="form-group">
-                      <textarea rows="4" placeholder="Add your comment..." required aria-label="Your comment"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-common">Submit Comment</button>
-                  </div>
-                  <div class="comment-list">
-                    <div class="comment-item">
-                      <div class="comment-meta">Emily Chen - February 22, 2025</div>
-                      <p>Fascinating read! AI in testing is definitely the future.</p>
-                    </div>
-                    <div class="comment-item">
-                      <div class="comment-meta">David Kim - February 21, 2025</div>
-                      <p>Any recommendations for open-source AI testing tools?</p>
-                    </div>
-                  </div>
+                <div class="comment-item">
+                  <div class="comment-meta">John Smith - April 11, 2025</div>
+                  <p>Really useful post. Have you tried Appium with cloud testing platforms like BrowserStack?</p>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Sidebar on Right -->
-          <div class="col-lg-4 col-md-5 col-sm-12">
-            <div class="blog-sidebar wow fadeInUp" data-wow-delay="0.6s">
-              <h3>Topics</h3>
-              <ul class="topics-list">
-                <li><a href="#"><i class="fas fa-robot"></i> Automation</a></li>
-                <li><a href="#"><i class="fas fa-cloud-upload-alt"></i> CI/CD</a></li>
-                <li><a href="#"><i class="fas fa-brain"></i> AI Testing</a></li>
-                <li><a href="#"><i class="fas fa-check-circle"></i> Quality Assurance</a></li>
-              </ul>
+          <!-- Blog Post 2 -->
+          <div class="blog-item">
+            <div class="blog-header">
+              <img src="https://placehold.co/120x120?text=CI/CD" class="img-fluid" alt="CI/CD Blog" loading="lazy">
+              <div class="blog-content">
+                <h4>CI/CD for Mobile Testing</h4>
+                <div class="blog-meta">Posted on March 15, 2025</div>
+                <p>Learn how to integrate automated mobile testing into CI/CD pipelines using Jenkins and Azure DevOps, streamlining workflows and accelerating release cycles by up to 40%.</p>
+                <button class="btn btn-common toggle-comments" data-target="comments-2">Read More</button>
+              </div>
+            </div>
+            <div class="comments-section" id="comments-2">
+              <h5>Comments</h5>
+              <div class="comment-form">
+                <div class="form-group">
+                  <textarea rows="4" placeholder="Add your comment..." required aria-label="Your comment"></textarea>
+                </div>
+                <button type="submit" class="btn btn-common">Submit Comment</button>
+              </div>
+              <div class="comment-list">
+                <div class="comment-item">
+                  <div class="comment-meta">Sarah Lee - March 17, 2025</div>
+                  <p>Excellent guide! The Azure DevOps setup was easy to follow.</p>
+                </div>
+                <div class="comment-item">
+                  <div class="comment-meta">Mike Brown - March 16, 2025</div>
+                  <p>Would love to see a follow-up on GitLab CI for mobile testing.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Blog Post 3 -->
+          <div class="blog-item">
+            <div class="blog-header">
+              <img src="https://placehold.co/120x120?text=AI+Testing" class="img-fluid" alt="AI Testing Blog" loading="lazy">
+              <div class="blog-content">
+                <h4>AI in Test Optimization</h4>
+                <div class="blog-meta">Posted on February 20, 2025</div>
+                <p>Discover how AI-driven tools can prioritize test cases, optimize testing processes, and reduce costs by leveraging machine learning algorithms for smarter QA workflows.</p>
+                <button class="btn btn-common toggle-comments" data-target="comments-3">Read More</button>
+              </div>
+            </div>
+            <div class="comments-section" id="comments-3">
+              <h5>Comments</h5>
+              <div class="comment-form">
+                <div class="form-group">
+                  <textarea rows="4" placeholder="Add your comment..." required aria-label="Your comment"></textarea>
+                </div>
+                <button type="submit" class="btn btn-common">Submit Comment</button>
+              </div>
+              <div class="comment-list">
+                <div class="comment-item">
+                  <div class="comment-meta">Emily Chen - February 22, 2025</div>
+                  <p>Fascinating read! AI in testing is definitely the future.</p>
+                </div>
+                <div class="comment-item">
+                  <div class="comment-meta">David Kim - February 21, 2025</div>
+                  <p>Any recommendations for open-source AI testing tools?</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <!-- Blog Section End -->
-
-    <!-- Footer Section Start -->
-    <footer class="footer-area section-padding">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="footer-text text-center wow fadeInDown" data-wow-delay="0.3s">
-              <ul class="social-icon">
-                <li><a class="facebook" href="#"><i class="icon-social-facebook"></i></a></li>
-                <li><a class="twitter" href="#"><i class="icon-social-twitter"></i></a></li>
-                <li><a class="instagram" href="#"><i class="icon-social-instagram"></i></a></li>
-                <li><a class="linkedin" href="https://www.linkedin.com/in/vishal-d-78362b22/"><i class="icon-social-linkedin"></i></a></li>
-                <li><a class="github" href="https://github.com/vishal2704"><i class="icon-social-github"></i></a></li>
-              </ul>
-              <p>Copyright © 2018 UIdeck All Right Reserved</p>
-            </div>
-          </div>
+      <!-- Sidebar on Right -->
+      <div class="col-lg-4 col-md-5 col-sm-12">
+        <div class="blog-sidebar wow fadeInUp" data-wow-delay="0.6s">
+          <h3>Topics</h3>
+          <ul class="topics-list">
+            <li><a href="#"><i class="fas fa-robot"></i> Automation</a></li>
+            <li><a href="#"><i class="fas fa-cloud-upload-alt"></i> CI/CD</a></li>
+            <li><a href="#"><i class="fas fa-brain"></i> AI Testing</a></li>
+            <li><a href="#"><i class="fas fa-check-circle"></i> Quality Assurance</a></li>
+          </ul>
         </div>
       </div>
-    </footer>
-    <!-- Footer Section End -->
+    </div>
+  </div>
+</section>
+<!-- Blog Section End -->
 
-    <!-- Go to Top Link -->
-    <a href="#" class="back-to-top">
-      <i class="icon-arrow-up"></i>
-    </a>
+<!-- Footer Section Start -->
+<footer class="footer-area section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="footer-text text-center wow fadeInDown" data-wow-delay="0.3s">
+          <ul class="social-icon">
+            <li><a class="facebook" href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook Profile"><i class="icon-social-facebook"></i></a></li>
+            <li><a class="twitter" href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter Profile"><i class="icon-social-twitter"></i></a></li>
+            <li><a class="instagram" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile"><i class="icon-social-instagram"></i></a></li>
+            <li><a class="linkedin" href="https://www.linkedin.com/in/vishal-d-78362b22/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="icon-social-linkedin"></i></a></li>
+            <li><a class="github" href="https://github.com/vishal2704" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile"><i class="icon-social-github"></i></a></li>
+          </ul>
+          <p>Copyright © 2025</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer Section End -->
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery-min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.mixitup.js"></script>
-    <script src="assets/js/wow.js"></script>
-    <script src="assets/js/jquery.nav.js"></script>
-    <script src="assets/js/jquery.easing.min.js"></script>  
-    <script src="assets/js/nivo-lightbox.js"></script>
-    <script src="assets/js/jquery.slicknav.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script>
-      // Toggle comments section visibility
-      $(document).ready(function() {
-        $('.toggle-comments').click(function() {
-          var targetId = $(this).data('target');
-          var $commentsSection = $('#' + targetId);
-          
-          // Toggle visibility
-          $commentsSection.slideToggle(300);
-          
-          // Update button text
-          var isVisible = $commentsSection.is(':visible');
-          $(this).text(isVisible ? 'Hide Comments' : 'Read More');
+<!-- Go to Top Link -->
+<a href="#" class="back-to-top" aria-label="Go to Top">
+  <i class="icon-arrow-up"></i>
+</a>
+
+<!-- Scripts -->
+<script src="assets/js/jquery-min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.mixitup.js"></script>
+<script src="assets/js/wow.js"></script>
+<script src="assets/js/jquery.nav.js"></script>
+<script src="assets/js/jquery.easing.min.js"></script>
+<script src="assets/js/nivo-lightbox.js"></script>
+<script src="assets/js/jquery.slicknav.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  // Toggle comments section visibility
+  $(document).ready(function() {
+    $('.toggle-comments').click(function() {
+      var targetId = $(this).data('target');
+      var $commentsSection = $('#' + targetId);
+
+      // Toggle visibility
+      $commentsSection.slideToggle(300);
+
+      // Update button text
+      var isVisible = $commentsSection.is(':visible');
+      $(this).text(isVisible ? 'Hide Comments' : 'Read More');
+    });
+  });
+
+  // Background music control with playlist and state persistence
+  document.addEventListener("DOMContentLoaded", function() {
+    // Music control
+    const music = document.getElementById('backgroundMusic');
+    const musicButton = document.getElementById('musicButton');
+    let isPlaying = localStorage.getItem('musicPlaying') === 'true';
+    let currentTrackIndex = parseInt(localStorage.getItem('currentTrackIndex')) || 0;
+    let musicCurrentTime = parseFloat(localStorage.getItem('musicCurrentTime')) || 0;
+
+    // Playlist (replace with your actual file paths and titles)
+    const playlist = [
+      { src: 'assets/audio/track1.mp3', title: 'Track 1' },
+      { src: 'assets/audio/track2.mp3', title: 'Track 2' },
+      { src: 'assets/audio/track3.mp3', title: 'Track 3' },
+      { src: 'assets/audio/track4.mp3', title: 'Track 4' },
+      { src: 'assets/audio/track5.mp3', title: 'Track 5' }
+      // Fallback: Uncomment to test with online MP3s
+      // { src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', title: 'Test Track 1' },
+      // { src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3', title: 'Test Track 2' },
+      // { src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3', title: 'Test Track 3' },
+      // { src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3', title: 'Test Track 4' },
+      // { src: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3', title: 'Test Track 5' }
+    ];
+
+    // Validate state
+    if (isNaN(currentTrackIndex) || currentTrackIndex < 0 || currentTrackIndex >= playlist.length) {
+      currentTrackIndex = 0;
+      localStorage.setItem('currentTrackIndex', '0');
+    }
+    if (isNaN(musicCurrentTime) || musicCurrentTime < 0) {
+      musicCurrentTime = 0;
+      localStorage.setItem('musicCurrentTime', '0');
+    }
+
+    // Load and play a track
+    function loadTrack(index) {
+      if (index >= playlist.length) {
+        index = 0; // Loop to first track
+      }
+      currentTrackIndex = index;
+      music.src = playlist[index].src;
+      console.log(`Loading track ${index + 1}: ${playlist[index].title} (src: ${music.src})`);
+      music.currentTime = musicCurrentTime;
+      localStorage.setItem('currentTrackIndex', currentTrackIndex);
+      if (isPlaying) {
+        music.play().then(() => {
+          console.log(`Playing: ${playlist[index].title} at ${musicCurrentTime}s`);
+        }).catch(error => {
+          console.error(`Failed to play ${playlist[index].title}:`, error);
+          playNextTrack(); // Skip to next track
         });
+      }
+    }
+
+    // Play next track
+    function playNextTrack() {
+      console.log(`Track ${playlist[currentTrackIndex].title} ended`);
+      musicCurrentTime = 0;
+      localStorage.setItem('musicCurrentTime', '0');
+      loadTrack((currentTrackIndex + 1) % playlist.length);
+    }
+
+    // Update current time in localStorage
+    music.addEventListener('timeupdate', function() {
+      musicCurrentTime = music.currentTime;
+      localStorage.setItem('musicCurrentTime', musicCurrentTime);
+    });
+
+    // Initialize player
+    if (music) {
+      console.log(`Restoring: track ${currentTrackIndex + 1}, time ${musicCurrentTime}s, playing: ${isPlaying}`);
+      loadTrack(currentTrackIndex);
+      music.play().then(() => {
+        isPlaying = true;
+        musicButton.innerHTML = "⏸️";
+        localStorage.setItem('musicPlaying', 'true');
+        console.log(`Auto-play: ${playlist[currentTrackIndex].title} (muted)`);
+      }).catch(error => {
+        console.warn('Auto-play failed:', error);
+        isPlaying = false;
+        musicButton.innerHTML = "🎵";
+        localStorage.setItem('musicPlaying', 'false');
       });
-    </script>
-  </body>
+    } else {
+      console.error('Audio element not found');
+      musicButton.disabled = true;
+      musicButton.innerHTML = "❌";
+    }
+
+    // Unmute on interaction
+    function unmuteOnInteraction() {
+      if (music && music.muted) {
+        music.muted = false;
+        console.log('Unmuted');
+        if (isPlaying && music.paused) {
+          music.play().catch(error => console.error('Retry play failed:', error));
+        }
+      }
+      document.removeEventListener('click', unmuteOnInteraction);
+    }
+    document.addEventListener('click', unmuteOnInteraction);
+
+    // Play/pause button
+    musicButton.addEventListener('click', function() {
+      console.log(`Music button clicked, isPlaying: ${isPlaying}`);
+      if (!isPlaying) {
+        if (!music.src) {
+          console.warn('No audio source set, reloading track');
+          loadTrack(currentTrackIndex);
+        }
+        music.play().then(() => {
+          isPlaying = true;
+          musicButton.innerHTML = "⏸️";
+          localStorage.setItem('musicPlaying', 'true');
+          console.log(`Play successful: ${playlist[currentTrackIndex].title}`);
+        }).catch(error => {
+          console.error(`Play failed for ${playlist[currentTrackIndex].title}:`, error);
+          musicButton.innerHTML = "🎵";
+        });
+      } else {
+        music.pause();
+        isPlaying = false;
+        musicButton.innerHTML = "🎵";
+        localStorage.setItem('musicPlaying', 'false');
+        console.log(`Paused: ${playlist[currentTrackIndex].title}`);
+      }
+    });
+
+    // Handle track end
+    music.addEventListener('ended', function() {
+      console.log(`Ended: ${playlist[currentTrackIndex].title}`);
+      playNextTrack();
+    });
+
+    // Handle errors
+    music.addEventListener('error', function() {
+      console.error(`Error with ${playlist[currentTrackIndex].title}. Skipping.`);
+      playNextTrack();
+    });
+
+    // Sync state
+    music.addEventListener('pause', function() {
+      if (!music.ended) {
+        isPlaying = false;
+        musicButton.innerHTML = "🎵";
+        localStorage.setItem('musicPlaying', 'false');
+        console.log(`Paused externally: ${playlist[currentTrackIndex].title}`);
+      }
+    });
+
+    music.addEventListener('play', function() {
+      isPlaying = true;
+      musicButton.innerHTML = "⏸️";
+      localStorage.setItem('musicPlaying', 'true');
+      console.log(`Playing externally: ${playlist[currentTrackIndex].title}`);
+    });
+  });
+</script>
+</body>
 </html>

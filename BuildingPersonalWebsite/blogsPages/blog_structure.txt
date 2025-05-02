@@ -1,0 +1,23 @@
+[Title]
+<Blog post title>
+
+[Date]
+<YYYY-MM-DD> (e.g., 2025-04-10)
+
+[Image]
+<URL or placeholder for the blog's thumbnail image> (e.g., https://placehold.co/150x150?text=Automation)
+
+[Summary]
+<Short summary of the blog post, 2-3 sentences, used on the main blogs page>
+
+[Content]
+<Full blog content, with sub-sections denoted by ## Subheading>
+## Subheading 1
+<Paragraphs for this section>
+## Subheading 2
+<Paragraphs for this section>
+...
+
+[Comments]
+<Optional initial comments, each on a new line, format: Name|Date|Comment>
+<Name>|<YYYY-MM-DD>|<Comment text>
